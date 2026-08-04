@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بكر للعطور الفاخرة | BAKR Perfumes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #2b323b;
+            --gold: #dfba73;
+            --text-main: #ffffff;
+            --text-muted: #b0b7c3;
+            --card-bg: #353e4a;
+            --transition: all 0.4s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        .top-bar {
+            background-color: var(--gold);
+            color: #1a1a1a;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            padding: 8px 0;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 8%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: sticky;
+            top: 0;
+            background-color: rgba(43, 50, 59, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo-image-link {
+            display: block;
+            height: 55px;
+            transition: var(--transition);
+        }
+
+        .logo-image-link:hover {
+            opacity: 0.8;
+        }
+
+        .logo-image-link img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text-main);
+        }
+
+        .header-icons i:hover {
+            color: var(--gold);
+            transition: var(--transition);
+        }
+
+        .hero {
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            color: var(--text-main);
+        }
+
+        .back-video {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(43, 50, 59, 0.65);
+            z-index: -1;
+        }
+
+        .hero-content {
+            z-index: 1;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 50px;
+            margin-bottom: 15px;
+            color: var(--gold);
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 19px;
+            color: #ffffff;
+            margin-bottom: 35px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            font-weight: 300;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--gold);
+            color: #1a1a1a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(223, 186, 115, 0.35);
+        }
+
+        .products-section {
+            padding: 80px 8%;
+            background-color: #242a32;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 35px;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: var(--transition);
+            border: 1px solid rgba(223, 186, 115, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 30px rgba(223, 186, 115, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background-color: #2b323b;
+            padding: 10px;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .product-btn {
+            margin-top: auto;
+            background-color: var(--gold);
+            color: #1a1a1a;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .product-btn:hover {
+            background-color: #ffffff;
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        ✨ عطور بكر الفاخرة | شحن مجاني للطلبات التي تتجاوز 300 ريال ✨
+    </div>
+
+    <header>
+        <a href="#" class="logo-image-link">
+            <img src="images/logo.jpg" alt="شعار بكر للعطور">
+        </a>
+        <ul class="nav-links">
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="#products">المجموعات الفاخرة</a></li>
+            <li><a href="#">قصتنا</a></li>
+            <li><a href="#">تواصل معنا</a></li>
+        </ul>
+        <div class="header-icons">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-bag-shopping"></i>
+        </div>
+    </header>
+
+    <section class="hero">
+        <video autoplay loop muted playsinline class="back-video">
+            <source src="Luxury_perfume_brand_logo_reveal.mp4" type="video/mp4">
+            متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>عطور بكر للعطور الفاخرة</h1>
+            <p>رحلة عطرية ساحرة تأسر الحواس. اكتشف الفخامة في كل قطرة.</p>
+            <a href="#products" class="btn">تسوق المجموعة</a>
+        </div>
+    </section>
+
+    <section class="products-section" id="products">
+        <div class="section-title">
+            <h2>مجموعتنا الفاخرة</h2>
+            <p>تشكيلة مختارة بعناية لتناسب ذوقك الرفيع</p>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card"><img src="images/orchid-pink.jpg" alt="Orchid Pink" class="product-image"><h3>Orchid Pink</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/invictus-victory.jpg" alt="Invictus Victory" class="product-image"><h3>Invictus Victory</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/angels-share.jpg" alt="Angel's Share" class="product-image"><h3>Angel's Share</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/imperial-valley.jpg" alt="Imperial Valley" class="product-image"><h3>Imperial Valley</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/allure-chanel.jpg" alt="Allure Chanel" class="product-image"><h3>Allure Chanel</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/escada-moon.jpg" alt="Escada Moon" class="product-image"><h3>Escada Moon</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/arabian-tonka.jpg" alt="Arabian Tonka" class="product-image"><h3>Arabian Tonka</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/212-black-red.jpg" alt="212 Black Red" class="product-image"><h3>212 Black Red</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/burberry-her.jpg" alt="Burberry Her" class="product-image"><h3>Burberry Her</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/boss-50.jpg" alt="Boss 50" class="product-image"><h3>Boss 50</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/barboss-50.jpg" alt="Barboss 50" class="product-image"><h3>Barboss 50</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/burberry-hero.jpg" alt="Burberry Hero" class="product-image"><h3>Burberry Hero</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/burberry-her-elixir.jpg" alt="Burberry Her Elixir" class="product-image"><h3>Burberry Her Elixir</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/pacific-chill.jpg" alt="Pacific Chill" class="product-image"><h3>Pacific Chill</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/olympea.jpg" alt="Olympéa" class="product-image"><h3>Olympéa</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/orchid-comet.jpg" alt="Orchid Comet" class="product-image"><h3>Orchid Comet</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/bois-pacific.jpg" alt="Bois Pacific" class="product-image"><h3>Bois Pacific</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/pink-queen-assaf.jpg" alt="Pink Queen - Assaf" class="product-image"><h3>Pink Queen - Assaf</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/blue-laverne.jpg" alt="Blue Laverne" class="product-image"><h3>Blue Laverne</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/bleu-de-chanel.jpg" alt="Bleu de Chanel" class="product-image"><h3>Bleu de Chanel</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/bvlgari-tygar.jpg" alt="Bvlgari Tygar" class="product-image"><h3>Bvlgari Tygar</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/black-lacquer.jpg" alt="Black Lacquer" class="product-image"><h3>Black Lacquer</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/black-opium.jpg" alt="Black Opium" class="product-image"><h3>Black Opium</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/baccarat-rouge.jpg" alt="Baccarat Rouge" class="product-image"><h3>Baccarat Rouge</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/god-of-fire.jpg" alt="God of Fire" class="product-image"><h3>God of Fire</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/guidance-46.jpg" alt="Guidance 46" class="product-image"><h3>Guidance 46</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/jadore.jpg" alt="J'adore" class="product-image"><h3>J'adore</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/tyrant-laverne.jpg" alt="Tyrant - Laverne" class="product-image"><h3>Tyrant - Laverne</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/babycat.jpg" alt="Babycat" class="product-image"><h3>Babycat</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/bois-imperial.jpg" alt="Bois Imperial" class="product-image"><h3>Bois Imperial</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/boss-oud.jpg" alt="Boss Oud" class="product-image"><h3>Boss Oud</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/bois-talisman-111.jpg" alt="Bois Talisman 111" class="product-image"><h3>Bois Talisman 111</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/saffron-lazuli.jpg" alt="Saffron Lazuli" class="product-image"><h3>Saffron Lazuli</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/xerjoff-alexandria-ii.jpg" alt="Xerjoff Alexandria II" class="product-image"><h3>Xerjoff Alexandria II</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/riyuns-amouage.jpg" alt="Riyuns Amouage" class="product-image"><h3>Riyuns Amouage</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/roshan-thunayan.jpg" alt="Roshan - Thunayan" class="product-image"><h3>Roshan - Thunayan</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/dior-homme.jpg" alt="Dior Homme" class="product-image"><h3>Dior Homme</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/dictator-thunayan.jpg" alt="Dictator - Thunayan" class="product-image"><h3>Dictator - Thunayan</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/deer-laverne.jpg" alt="Deer Laverne" class="product-image"><h3>Deer Laverne</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/parfums-de-marly-layton.jpg" alt="Parfums de Marly Layton" class="product-image"><h3>Parfums de Marly Layton</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/valentino-roma.jpg" alt="Valentino Roma" class="product-image"><h3>Valentino Roma</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/oud-maracuja.jpg" alt="Oud Maracuja" class="product-image"><h3>Oud Maracuja</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/charnier-gres.jpg" alt="Charnier Grès" class="product-image"><h3>Charnier Grès</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/sauvage-dior.jpg" alt="Sauvage Dior" class="product-image"><h3>Sauvage Dior</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/summer-hammer.jpg" alt="Summer Hammer" class="product-image"><h3>Summer Hammer</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/scandal-night.jpg" alt="Scandal Night" class="product-image"><h3>Scandal Night</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/scandal-absolu.jpg" alt="Scandal Absolu" class="product-image"><h3>Scandal Absolu</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/stranger.jpg" alt="Stranger" class="product-image"><h3>Stranger</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/le-male-elixir.jpg" alt="Le Male Elixir" class="product-image"><h3>Le Male Elixir</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/lancome-la-nuit-tresor.jpg" alt="Lancôme La Nuit Trésor" class="product-image"><h3>Lancôme La Nuit Trésor</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/lador-bakhoor.jpg" alt="Lador Bakhoor" class="product-image"><h3>Lador Bakhoor</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/kayali-pink.jpg" alt="Kayali Pink" class="product-image"><h3>Kayali Pink</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/coco-chanel.jpg" alt="Coco Chanel" class="product-image"><h3>Coco Chanel</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/creed-silver.jpg" alt="Creed Silver" class="product-image"><h3>Creed Silver</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/creed-aventus.jpg" alt="Creed Aventus" class="product-image"><h3>Creed Aventus</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/versace-eros.jpg" alt="Versace Eros" class="product-image"><h3>Versace Eros</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/montblanc-explorer.jpg" alt="Montblanc Explorer" class="product-image"><h3>Montblanc Explorer</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/miss-laverne.jpg" alt="Miss Laverne" class="product-image"><h3>Miss Laverne</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/miss-sakura.jpg" alt="Miss Sakura" class="product-image"><h3>Miss Sakura</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/miss-dior.jpg" alt="Miss Dior" class="product-image"><h3>Miss Dior</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/majameer.jpg" alt="Majameer" class="product-image"><h3>Majameer</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/my-way.jpg" alt="My Way" class="product-image"><h3>My Way</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/limmensite.jpg" alt="L'Immensité" class="product-image"><h3>L'Immensité</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/libre.jpg" alt="Libre" class="product-image"><h3>Libre</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/hypnotic-poison.jpg" alt="Hypnotic Poison" class="product-image"><h3>Hypnotic Poison</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/wanted-azzaro.jpg" alt="Wanted Azzaro" class="product-image"><h3>Wanted Azzaro</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/wild-cold-tobacco.jpg" alt="Wild Cold Tobacco" class="product-image"><h3>Wild Cold Tobacco</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/wild-colt-assaf.jpg" alt="Wild Colt - Assaf" class="product-image"><h3>Wild Colt - Assaf</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card"><img src="images/1-million.jpg" alt="1 Million" class="product-image"><h3>1 Million</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+        </div>
+    </section>
+
+</body>
+</html>
