@@ -7,6 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- مكتبة تكبير الصور (Lightbox CSS) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    
     <style>
         :root {
             --bg-color: #2b323b;
@@ -223,14 +226,51 @@
             box-shadow: 0 15px 30px rgba(223, 186, 115, 0.15);
         }
 
-        .product-image {
+        .product-image-container {
             width: 100%;
             height: 250px;
-            object-fit: contain;
             margin-bottom: 15px;
             border-radius: 8px;
             background-color: #2b323b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
             padding: 10px;
+            transition: var(--transition);
+        }
+
+        .product-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* أيقونة صغيرة تظهر عند مرور الماوس تدل على إمكانية تكبير الصورة */
+        .product-image-container::after {
+            content: "\f00e";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--gold);
+            padding: 6px 10px;
+            border-radius: 50%;
+            font-size: 12px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .product-image-container:hover::after {
+            opacity: 1;
         }
 
         .product-card h3 {
@@ -298,44 +338,334 @@
     <section class="products-section" id="products">
         <div class="section-title">
             <h2>مجموعتنا الفاخرة</h2>
-            <p>تشكيلة مختارة بعناية لتناسب ذوقك الرفيع</p>
+            <p>تشكيلة مختارة بعناية لتناسب ذوقك الرفيع (اضغط على أي صورة لتكبيرها ورؤية تفاصيلها)</p>
         </div>
 
         <div class="products-grid">
-            <div class="product-card"><img src="images/1 Million.jpg" alt="1 Million" class="product-image"><h3>1 Million</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/212 Black Red.jpg" alt="212 Black Red" class="product-image"><h3>212 Black Red</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Allure Chanel.jpg" alt="Allure Chanel" class="product-image"><h3>Allure Chanel</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Angel's Share.jpg" alt="Angel's Share" class="product-image"><h3>Angel's Share</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Arabian Tonka.jpg" alt="Arabian Tonka" class="product-image"><h3>Arabian Tonka</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Babycat.jpg" alt="Babycat" class="product-image"><h3>Babycat</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Baccarat Rouge.jpg" alt="Baccarat Rouge" class="product-image"><h3>Baccarat Rouge</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Barboss 50.jpg" alt="Barboss 50" class="product-image"><h3>Barboss 50</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Black Lacquer.jpg" alt="Black Lacquer" class="product-image"><h3>Black Lacquer</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Black Opium.jpg" alt="Black Opium" class="product-image"><h3>Black Opium</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Bleu de Chanel.jpg" alt="Bleu de Chanel" class="product-image"><h3>Bleu de Chanel</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Blue Laverne.jpg" alt="Blue Laverne" class="product-image"><h3>Blue Laverne</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Bois Imperial.jpg" alt="Bois Imperial" class="product-image"><h3>Bois Imperial</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Bois Pacific.jpg" alt="Bois Pacific" class="product-image"><h3>Bois Pacific</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Bois Talisman 111.jpg" alt="Bois Talisman 111" class="product-image"><h3>Bois Talisman 111</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Boss 50.jpg" alt="Boss 50" class="product-image"><h3>Boss 50</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Boss Oud.jpg" alt="Boss Oud" class="product-image"><h3>Boss Oud</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Burberry Her Elixir.jpg" alt="Burberry Her Elixir" class="product-image"><h3>Burberry Her Elixir</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Burberry Her.jpg" alt="Burberry Her" class="product-image"><h3>Burberry Her</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Burberry Hero.jpg" alt="Burberry Hero" class="product-image"><h3>Burberry Hero</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Bvlgari Tygar.jpg" alt="Bvlgari Tygar" class="product-image"><h3>Bvlgari Tygar</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Charnier Grès.jpg" alt="Charnier Grès" class="product-image"><h3>Charnier Grès</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Coco Chanel.jpg" alt="Coco Chanel" class="product-image"><h3>Coco Chanel</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Creed Aventus.jpg" alt="Creed Aventus" class="product-image"><h3>Creed Aventus</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Creed Silver.jpg" alt="Creed Silver" class="product-image"><h3>Creed Silver</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Deer Laverne.jpg" alt="Deer Laverne" class="product-image"><h3>Deer Laverne</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Dictator - Thunayan.jpg" alt="Dictator - Thunayan" class="product-image"><h3>Dictator - Thunayan</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Dior Homme.jpg" alt="Dior Homme" class="product-image"><h3>Dior Homme</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Escada Moon.jpg" alt="Escada Moon" class="product-image"><h3>Escada Moon</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/God of Fire.jpg" alt="God of Fire" class="product-image"><h3>God of Fire</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Guidance 46.jpg" alt="Guidance 46" class="product-image"><h3>Guidance 46</h3><a href="#" class="product-btn">أضف للسلة</a></div>
-            <div class="product-card"><img src="images/Hypnotic Poison.jpg" alt="Hypnotic Poison" class="product-image"><h3>Hypnotic Poison</h3><a href="#" class="product-btn">أضف للسلة</a></div>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/1 Million.jpg" data-lightbox="perfumes" data-title="1 Million">
+                        <img src="images/1 Million.jpg" alt="1 Million">
+                    </a>
+                </div>
+                <h3>1 Million</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/212 Black Red.jpg" data-lightbox="perfumes" data-title="212 Black Red">
+                        <img src="images/212 Black Red.jpg" alt="212 Black Red">
+                    </a>
+                </div>
+                <h3>212 Black Red</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Allure Chanel.jpg" data-lightbox="perfumes" data-title="Allure Chanel">
+                        <img src="images/Allure Chanel.jpg" alt="Allure Chanel">
+                    </a>
+                </div>
+                <h3>Allure Chanel</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Angel's Share.jpg" data-lightbox="perfumes" data-title="Angel's Share">
+                        <img src="images/Angel's Share.jpg" alt="Angel's Share">
+                    </a>
+                </div>
+                <h3>Angel's Share</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Arabian Tonka.jpg" data-lightbox="perfumes" data-title="Arabian Tonka">
+                        <img src="images/Arabian Tonka.jpg" alt="Arabian Tonka">
+                    </a>
+                </div>
+                <h3>Arabian Tonka</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Babycat.jpg" data-lightbox="perfumes" data-title="Babycat">
+                        <img src="images/Babycat.jpg" alt="Babycat">
+                    </a>
+                </div>
+                <h3>Babycat</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Baccarat Rouge.jpg" data-lightbox="perfumes" data-title="Baccarat Rouge">
+                        <img src="images/Baccarat Rouge.jpg" alt="Baccarat Rouge">
+                    </a>
+                </div>
+                <h3>Baccarat Rouge</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Barboss 50.jpg" data-lightbox="perfumes" data-title="Barboss 50">
+                        <img src="images/Barboss 50.jpg" alt="Barboss 50">
+                    </a>
+                </div>
+                <h3>Barboss 50</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Black Lacquer.jpg" data-lightbox="perfumes" data-title="Black Lacquer">
+                        <img src="images/Black Lacquer.jpg" alt="Black Lacquer">
+                    </a>
+                </div>
+                <h3>Black Lacquer</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Black Opium.jpg" data-lightbox="perfumes" data-title="Black Opium">
+                        <img src="images/Black Opium.jpg" alt="Black Opium">
+                    </a>
+                </div>
+                <h3>Black Opium</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Bleu de Chanel.jpg" data-lightbox="perfumes" data-title="Bleu de Chanel">
+                        <img src="images/Bleu de Chanel.jpg" alt="Bleu de Chanel">
+                    </a>
+                </div>
+                <h3>Bleu de Chanel</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Blue Laverne.jpg" data-lightbox="perfumes" data-title="Blue Laverne">
+                        <img src="images/Blue Laverne.jpg" alt="Blue Laverne">
+                    </a>
+                </div>
+                <h3>Blue Laverne</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Bois Imperial.jpg" data-lightbox="perfumes" data-title="Bois Imperial">
+                        <img src="images/Bois Imperial.jpg" alt="Bois Imperial">
+                    </a>
+                </div>
+                <h3>Bois Imperial</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Bois Pacific.jpg" data-lightbox="perfumes" data-title="Bois Pacific">
+                        <img src="images/Bois Pacific.jpg" alt="Bois Pacific">
+                    </a>
+                </div>
+                <h3>Bois Pacific</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Bois Talisman 111.jpg" data-lightbox="perfumes" data-title="Bois Talisman 111">
+                        <img src="images/Bois Talisman 111.jpg" alt="Bois Talisman 111">
+                    </a>
+                </div>
+                <h3>Bois Talisman 111</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Boss 50.jpg" data-lightbox="perfumes" data-title="Boss 50">
+                        <img src="images/Boss 50.jpg" alt="Boss 50">
+                    </a>
+                </div>
+                <h3>Boss 50</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Boss Oud.jpg" data-lightbox="perfumes" data-title="Boss Oud">
+                        <img src="images/Boss Oud.jpg" alt="Boss Oud">
+                    </a>
+                </div>
+                <h3>Boss Oud</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Burberry Her Elixir.jpg" data-lightbox="perfumes" data-title="Burberry Her Elixir">
+                        <img src="images/Burberry Her Elixir.jpg" alt="Burberry Her Elixir">
+                    </a>
+                </div>
+                <h3>Burberry Her Elixir</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Burberry Her.jpg" data-lightbox="perfumes" data-title="Burberry Her">
+                        <img src="images/Burberry Her.jpg" alt="Burberry Her">
+                    </a>
+                </div>
+                <h3>Burberry Her</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Burberry Hero.jpg" data-lightbox="perfumes" data-title="Burberry Hero">
+                        <img src="images/Burberry Hero.jpg" alt="Burberry Hero">
+                    </a>
+                </div>
+                <h3>Burberry Hero</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Bvlgari Tygar.jpg" data-lightbox="perfumes" data-title="Bvlgari Tygar">
+                        <img src="images/Bvlgari Tygar.jpg" alt="Bvlgari Tygar">
+                    </a>
+                </div>
+                <h3>Bvlgari Tygar</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Charnier Grès.jpg" data-lightbox="perfumes" data-title="Charnier Grès">
+                        <img src="images/Charnier Grès.jpg" alt="Charnier Grès">
+                    </a>
+                </div>
+                <h3>Charnier Grès</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Coco Chanel.jpg" data-lightbox="perfumes" data-title="Coco Chanel">
+                        <img src="images/Coco Chanel.jpg" alt="Coco Chanel">
+                    </a>
+                </div>
+                <h3>Coco Chanel</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Creed Aventus.jpg" data-lightbox="perfumes" data-title="Creed Aventus">
+                        <img src="images/Creed Aventus.jpg" alt="Creed Aventus">
+                    </a>
+                </div>
+                <h3>Creed Aventus</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Creed Silver.jpg" data-lightbox="perfumes" data-title="Creed Silver">
+                        <img src="images/Creed Silver.jpg" alt="Creed Silver">
+                    </a>
+                </div>
+                <h3>Creed Silver</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Deer Laverne.jpg" data-lightbox="perfumes" data-title="Deer Laverne">
+                        <img src="images/Deer Laverne.jpg" alt="Deer Laverne">
+                    </a>
+                </div>
+                <h3>Deer Laverne</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Dictator - Thunayan.jpg" data-lightbox="perfumes" data-title="Dictator - Thunayan">
+                        <img src="images/Dictator - Thunayan.jpg" alt="Dictator - Thunayan">
+                    </a>
+                </div>
+                <h3>Dictator - Thunayan</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Dior Homme.jpg" data-lightbox="perfumes" data-title="Dior Homme">
+                        <img src="images/Dior Homme.jpg" alt="Dior Homme">
+                    </a>
+                </div>
+                <h3>Dior Homme</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Escada Moon.jpg" data-lightbox="perfumes" data-title="Escada Moon">
+                        <img src="images/Escada Moon.jpg" alt="Escada Moon">
+                    </a>
+                </div>
+                <h3>Escada Moon</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/God of Fire.jpg" data-lightbox="perfumes" data-title="God of Fire">
+                        <img src="images/God of Fire.jpg" alt="God of Fire">
+                    </a>
+                </div>
+                <h3>God of Fire</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Guidance 46.jpg" data-lightbox="perfumes" data-title="Guidance 46">
+                        <img src="images/Guidance 46.jpg" alt="Guidance 46">
+                    </a>
+                </div>
+                <h3>Guidance 46</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="images/Hypnotic Poison.jpg" data-lightbox="perfumes" data-title="Hypnotic Poison">
+                        <img src="images/Hypnotic Poison.jpg" alt="Hypnotic Poison">
+                    </a>
+                </div>
+                <h3>Hypnotic Poison</h3>
+                <a href="#" class="product-btn">أضف للسلة</a>
+            </div>
         </div>
     </section>
 
+    <!-- مكتبة تشغيل تكبير الصور (JavaScript) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
 </body>
 </html>
