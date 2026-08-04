@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* ثيم الألوان (الوضع الليلي والوضع الفاتح) */
         :root {
             --bg-color: #2b323b;
             --card-bg: #353e4a;
@@ -32,554 +31,165 @@
         }
 
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-            scroll-behavior: smooth;
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Cairo', sans-serif; scroll-behavior: smooth;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
+        body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; }
 
         .top-bar {
-            background-color: var(--gold);
-            color: #1a1a1a;
-            font-size: 13px;
-            font-weight: 700;
-            text-align: center;
-            padding: 8px 0;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1001;
+            background-color: var(--gold); color: #1a1a1a;
+            font-size: 13px; font-weight: 700; text-align: center; padding: 8px 0;
+            position: relative; z-index: 1001;
         }
 
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 6%;
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            background-color: var(--header-bg);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 6%; border-bottom: 1px solid var(--border-color);
+            position: sticky; top: 0; background-color: var(--header-bg);
+            backdrop-filter: blur(10px); z-index: 1000;
         }
 
-        .logo-container img {
-            height: 50px;
-            object-fit: contain;
-        }
+        .logo-container img { height: 50px; object-fit: contain; }
 
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-        }
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-size: 15px; font-weight: 600; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
-        .nav-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 600;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--gold);
-        }
-
-        .header-icons {
-            display: flex;
-            gap: 18px;
-            align-items: center;
-        }
-
-        .icon-btn {
-            background: none;
-            border: none;
-            color: var(--text-main);
-            font-size: 18px;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .icon-btn:hover {
-            color: var(--gold);
-        }
+        .header-icons { display: flex; gap: 18px; align-items: center; }
+        .icon-btn { background: none; border: none; color: var(--text-main); font-size: 18px; cursor: pointer; position: relative; }
+        .icon-btn:hover { color: var(--gold); }
 
         .badge {
-            position: absolute;
-            top: -8px;
-            right: -10px;
-            background-color: var(--gold);
-            color: #1a1a1a;
-            font-size: 11px;
-            font-weight: 700;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute; top: -8px; right: -10px;
+            background-color: var(--gold); color: #1a1a1a;
+            font-size: 11px; font-weight: 700; width: 18px; height: 18px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
         }
 
-        .hamburger {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-        }
+        .hamburger { display: none; font-size: 24px; cursor: pointer; }
 
-        /* Hero Section */
         .hero {
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            height: 80vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; position: relative; overflow: hidden;
         }
-
-        .back-video {
-            position: absolute;
-            right: 0; bottom: 0;
-            min-width: 100%; min-height: 100%;
-            z-index: -1;
-            object-fit: cover;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(43, 50, 59, 0.7);
-            z-index: -1;
-        }
-
-        .hero-content h1 {
-            font-size: 45px;
-            margin-bottom: 15px;
-            color: var(--gold);
-            font-weight: 700;
-        }
-
-        .hero-content p {
-            font-size: 18px;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            max-width: 600px;
-        }
+        .back-video { position: absolute; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1; object-fit: cover; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(43, 50, 59, 0.7); z-index: -1; }
+        .hero-content h1 { font-size: 45px; margin-bottom: 15px; color: var(--gold); font-weight: 700; }
+        .hero-content p { font-size: 18px; color: var(--text-muted); margin-bottom: 30px; max-width: 600px; }
 
         .btn {
-            display: inline-block;
-            background-color: transparent;
-            color: var(--gold);
-            border: 2px solid var(--gold);
-            padding: 12px 35px;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 30px;
-            text-decoration: none;
-            cursor: pointer;
+            display: inline-block; background-color: transparent; color: var(--gold);
+            border: 2px solid var(--gold); padding: 12px 35px; font-size: 15px; font-weight: 600;
+            border-radius: 30px; text-decoration: none; cursor: pointer;
         }
+        .btn:hover { background-color: var(--gold); color: #1a1a1a; box-shadow: 0 5px 20px rgba(223, 186, 115, 0.3); }
 
-        .btn:hover {
-            background-color: var(--gold);
-            color: #1a1a1a;
-            box-shadow: 0 5px 20px rgba(223, 186, 115, 0.3);
-        }
-
-        /* Store Section */
-        .store-section {
-            padding: 60px 6%;
-        }
-
-        .controls-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .search-box {
-            position: relative;
-            flex: 1;
-            max-width: 350px;
-        }
-
+        .store-section { padding: 60px 6%; }
+        .controls-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
+        
+        .search-box { position: relative; flex: 1; max-width: 350px; }
         .search-box input {
-            width: 100%;
-            padding: 12px 40px 12px 15px;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 25px;
-            color: var(--text-main);
-            outline: none;
-            font-size: 14px;
+            width: 100%; padding: 12px 40px 12px 15px; background-color: var(--card-bg);
+            border: 1px solid var(--border-color); border-radius: 25px; color: var(--text-main); outline: none; font-size: 14px;
         }
+        .search-box i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
 
-        .search-box input:focus {
-            border-color: var(--gold);
-        }
-
-        .search-box i {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-        }
-
-        .categories {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
+        .categories { display: flex; gap: 10px; flex-wrap: wrap; }
         .cat-btn {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            padding: 8px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
+            background-color: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-muted);
+            padding: 8px 18px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: 600;
         }
+        .cat-btn.active, .cat-btn:hover { background-color: var(--gold); color: #1a1a1a; border-color: var(--gold); }
 
-        .cat-btn.active, .cat-btn:hover {
-            background-color: var(--gold);
-            color: #1a1a1a;
-            border-color: var(--gold);
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-        }
-
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
         .product-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            padding: 15px;
-            text-align: center;
-            position: relative;
+            background-color: var(--card-bg); border-radius: 12px; overflow: hidden;
+            border: 1px solid var(--border-color); display: flex; flex-direction: column; padding: 15px; text-align: center; position: relative;
         }
-
-        .product-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--gold);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
+        .product-card:hover { transform: translateY(-6px); border-color: var(--gold); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
 
         .wishlist-icon {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(0,0,0,0.4);
-            border: none;
-            color: #fff;
-            width: 32px; height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            z-index: 10;
+            position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.4); border: none;
+            color: #fff; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10;
         }
+        .wishlist-icon.active { color: #ff4757; }
 
-        .wishlist-icon.active {
-            color: #ff4757;
-        }
+        .product-img-box { width: 100%; height: 220px; background-color: rgba(0,0,0,0.05); border-radius: 8px; overflow: hidden; cursor: pointer; position: relative; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; }
+        .product-img-box img { max-width: 100%; max-height: 100%; object-fit: contain; padding: 10px; }
 
-        .product-img-box {
-            width: 100%;
-            height: 220px;
-            background-color: rgba(0,0,0,0.05);
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            position: relative;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        .product-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+        .product-rating { color: #f39c12; font-size: 13px; margin-bottom: 8px; }
+        .product-price { color: var(--gold); font-size: 15px; font-weight: 700; margin-bottom: 15px; }
 
-        .product-img-box img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            padding: 10px;
-        }
+        .card-actions { display: flex; gap: 10px; margin-top: auto; }
+        .action-btn { flex: 1; padding: 8px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; }
+        .details-btn { background-color: transparent; color: var(--text-main); border: 1px solid var(--border-color); }
+        .details-btn:hover { border-color: var(--gold); color: var(--gold); }
+        .buy-btn { background-color: var(--gold); color: #1a1a1a; }
+        .buy-btn:hover { background-color: var(--gold-dark); }
 
-        .product-card h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .product-rating {
-            color: #f39c12;
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-
-        .product-price {
-            color: var(--gold);
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .card-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: auto;
-        }
-
-        .action-btn {
-            flex: 1;
-            padding: 8px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-        }
-
-        .details-btn {
-            background-color: transparent;
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-        }
-
-        .details-btn:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-        }
-
-        .buy-btn {
-            background-color: var(--gold);
-            color: #1a1a1a;
-        }
-
-        .buy-btn:hover {
-            background-color: var(--gold-dark);
-        }
-
-        /* Cart & Wishlist Drawers */
         .drawer {
-            position: fixed;
-            top: 0; right: -380px;
-            width: 360px;
-            height: 100%;
-            background-color: var(--card-bg);
-            box-shadow: -5px 0 15px rgba(0,0,0,0.3);
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            transition: right 0.4s ease;
+            position: fixed; top: 0; right: -380px; width: 360px; height: 100%;
+            background-color: var(--card-bg); box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+            z-index: 2000; display: flex; flex-direction: column; padding: 20px; transition: right 0.4s ease;
         }
+        .drawer.open { right: 0; }
+        .drawer-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 15px; }
+        .close-drawer { background: none; border: none; color: var(--text-main); font-size: 18px; cursor: pointer; }
+        .drawer-items { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+        .drawer-item { display: flex; justify-content: space-between; align-items: center; background-color: var(--bg-color); padding: 10px; border-radius: 8px; }
+        .drawer-footer { border-top: 1px solid var(--border-color); padding-top: 15px; }
 
-        .drawer.open {
-            right: 0;
-        }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.75); display: none; justify-content: center; align-items: center; z-index: 3000; padding: 20px; }
+        .modal-content { background-color: var(--card-bg); border-radius: 15px; max-width: 650px; width: 100%; padding: 30px; position: relative; border: 1px solid var(--gold); display: flex; gap: 30px; align-items: center; }
+        .modal-close { position: absolute; top: 15px; left: 15px; background: none; border: none; color: var(--text-main); font-size: 22px; cursor: pointer; }
 
-        .drawer-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-        }
-
-        .close-drawer {
-            background: none;
-            border: none;
-            color: var(--text-main);
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .drawer-items {
-            flex: 1;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .drawer-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: var(--bg-color);
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .drawer-footer {
-            border-top: 1px solid var(--border-color);
-            padding-top: 15px;
-        }
-
-        /* Product Detail Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.75);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 3000;
-            padding: 20px;
-        }
-
-        .modal-content {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            max-width: 650px;
-            width: 100%;
-            padding: 30px;
-            position: relative;
-            border: 1px solid var(--gold);
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        @media (max-width: 768px) {
-            .modal-content {
-                flex-direction: column;
-                text-align: center;
-                max-height: 90vh;
-                overflow-y: auto;
-            }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px; left: 15px;
-            background: none; border: none;
-            color: var(--text-main); font-size: 22px; cursor: pointer;
-        }
-
-        /* Toast Notification */
         .toast {
-            position: fixed;
-            bottom: -60px; right: 30px;
-            background-color: var(--gold);
-            color: #1a1a1a;
-            padding: 12px 25px;
-            border-radius: 30px;
-            font-weight: 700;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            z-index: 4000;
-            transition: bottom 0.4s ease;
+            position: fixed; bottom: -60px; right: 30px; background-color: var(--gold); color: #1a1a1a;
+            padding: 12px 25px; border-radius: 30px; font-weight: 700; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 4000; transition: bottom 0.4s ease;
         }
+        .toast.show { bottom: 30px; }
 
-        .toast.show {
-            bottom: 30px;
-        }
-
-        /* Info Sections */
-        .info-section {
-            padding: 70px 8%;
-            text-align: center;
-        }
-
-        .contact-form {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-main);
-            outline: none;
+        .info-section { padding: 70px 8%; text-align: center; }
+        .contact-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+        .contact-form input, .contact-form textarea, .contact-form select {
+            width: 100%; padding: 12px; background-color: var(--card-bg);
+            border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main); outline: none;
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 70px; right: 0;
-                width: 100%;
-                background-color: var(--header-bg);
-                padding: 20px;
-                border-bottom: 1px solid var(--border-color);
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .hamburger {
-                display: block;
-            }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; right: 0; width: 100%; background-color: var(--header-bg); padding: 20px; border-bottom: 1px solid var(--border-color); }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .modal-content { flex-direction: column; text-align: center; max-height: 90vh; overflow-y: auto; }
         }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        ✨ عطور بكر الفاخرة | شحن مجاني للطلبات فوق 300 ريال ✨
-    </div>
+    <div class="top-bar">✨ عطور بكر الفاخرة | شحن مجاني للطلبات فوق 300 ريال ✨</div>
 
     <header>
-        <div class="logo-container">
-            <img src="images/logo.jpg" alt="شعار بكر">
-        </div>
+        <div class="logo-container"><img src="images/logo.jpg" alt="شعار بكر"></div>
         <ul class="nav-links" id="navLinks">
             <li><a href="#store" class="active">الرئيسية</a></li>
+            <li><a href="#reviews-section">التقييمات</a></li>
             <li><a href="#about">من نحن</a></li>
             <li><a href="#contact">تواصل معنا</a></li>
         </ul>
         <div class="header-icons">
-            <button class="icon-btn" id="themeToggle" title="تغيير المظهر">
-                <i class="fa-solid fa-moon" id="themeIcon"></i>
-            </button>
-            <button class="icon-btn" id="wishlistBtn" title="المفضلة">
-                <i class="fa-solid fa-heart"></i>
-                <span class="badge" id="wishlistCount">0</span>
-            </button>
-            <button class="icon-btn" id="cartBtn" title="السلة">
-                <i class="fa-solid fa-bag-shopping"></i>
-                <span class="badge" id="cartCount">0</span>
-            </button>
-            <div class="hamburger" id="hamburger">
-                <i class="fa-solid fa-bars"></i>
-            </div>
+            <button class="icon-btn" id="themeToggle"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
+            <button class="icon-btn" id="wishlistBtn"><i class="fa-solid fa-heart"></i><span class="badge" id="wishlistCount">0</span></button>
+            <button class="icon-btn" id="cartBtn"><i class="fa-solid fa-bag-shopping"></i><span class="badge" id="cartCount">0</span></button>
+            <div class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></div>
         </div>
     </header>
 
     <section class="hero">
-        <video autoplay loop muted playsinline class="back-video">
-            <source src="vida.mp4" type="video/mp4">
-        </video>
+        <video autoplay loop muted playsinline class="back-video"><source src="vida.mp4" type="video/mp4"></video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>عطور بكر الفاخرة</h1>
@@ -601,21 +211,42 @@
                 <button class="cat-btn" data-filter="women">نسائي</button>
             </div>
         </div>
+        <div class="products-grid" id="productsGrid"></div>
+    </section>
 
-        <div class="products-grid" id="productsGrid">
-            <!-- المنتجات تولد تلقائياً -->
+    <!-- قسم تقييمات العملاء التفاعلي (مربوط بـ Firebase) -->
+    <section class="info-section" id="reviews-section" style="background-color: var(--card-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <h2 style="margin-bottom: 10px;">آراء وتقييمات العملاء</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 14px;">نعتز بثقتكم، شاركونا تجاربكم مع عطور بكر (تظهر لجميع الزوار)</p>
+        
+        <form class="contact-form" id="reviewForm" style="margin-bottom: 40px;" onsubmit="addNewReview(event)">
+            <input type="text" id="reviewerName" placeholder="اسمك الكريم" required>
+            <div style="display: flex; gap: 10px; align-items: center; justify-content: center; color: #f39c12; font-size: 18px;">
+                <span>اختر التقييم:</span>
+                <select id="reviewRating">
+                    <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                    <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                    <option value="3">⭐⭐⭐ (3/5)</option>
+                    <option value="2">⭐⭐ (2/5)</option>
+                    <option value="1">⭐ (1/5)</option>
+                </select>
+            </div>
+            <textarea id="reviewText" rows="3" placeholder="اكتب رأيك أو تجربتك مع العطر..." required></textarea>
+            <button type="submit" class="btn" style="width: 100%;">إرسال التقييم</button>
+        </form>
+
+        <div id="reviewsContainer" style="max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; text-align: right;">
+            <p style="text-align: center; color: var(--text-muted);">جاري تحميل التعليقات...</p>
         </div>
     </section>
 
-    <!-- من نحن -->
     <section class="info-section" id="about">
         <h2>من نحن</h2>
         <p style="max-width: 700px; margin: 15px auto; color: var(--text-muted); line-height: 1.8;">
-            متجر **بكر (Bakr)** وجهتك الأولى لعالم العطور الفاخرة والفريدة. نسعى دائماً لتقديم أجود التركيبات العطرية المستوحاة من أرقى الماركات العالمية لترضي ذوقك الرفيع.
+            متجر **بكر (Bakr)** وجهتك الأولى لعالم العطور الفاخرة والفريدة. نسعى دائماً لتقديم أجود التركيبات العطرية المستوحاة من أرقى الماركات العالمية.
         </p>
     </section>
 
-    <!-- تواصل معنا -->
     <section class="info-section" id="contact" style="background-color: var(--card-bg);">
         <h2>تواصل معنا</h2>
         <form class="contact-form" onsubmit="event.preventDefault(); showToast('تم إرسال رسالتك بنجاح!');">
@@ -626,58 +257,114 @@
         </form>
     </section>
 
-    <!-- سلة الشراء -->
+    <!-- السلة والمفضلة والمودال -->
     <div class="drawer" id="cartDrawer">
-        <div class="drawer-header">
-            <h3>سلة المشتريات</h3>
-            <button class="close-drawer" id="closeCart"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="drawer-items" id="cartItemsContainer">
-            <p style="text-align: center; color: var(--text-muted); margin-top: 40px;">السلة فارغة حالياً</p>
-        </div>
+        <div class="drawer-header"><h3>سلة المشتريات</h3><button class="close-drawer" id="closeCart"><i class="fa-solid fa-xmark"></i></button></div>
+        <div class="drawer-items" id="cartItemsContainer"><p style="text-align: center; color: var(--text-muted); margin-top: 40px;">السلة فارغة حالياً</p></div>
         <div class="drawer-footer">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 700;">
-                <span>المجموع:</span>
-                <span id="cartTotal">0 ريال</span>
-            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 700;"><span>المجموع:</span><span id="cartTotal">0 ريال</span></div>
             <button class="btn" style="width: 100%; border-radius: 20px;" onclick="showToast('تم إتمام الطلب بنجاح!')">إتمام الطلب</button>
         </div>
     </div>
 
-    <!-- قائمة المفضلة -->
     <div class="drawer" id="wishlistDrawer">
-        <div class="drawer-header">
-            <h3>قائمة المفضلة</h3>
-            <button class="close-drawer" id="closeWishlist"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="drawer-items" id="wishlistItemsContainer">
-            <p style="text-align: center; color: var(--text-muted); margin-top: 40px;">لا توجد عطور في المفضلة</p>
-        </div>
+        <div class="drawer-header"><h3>قائمة المفضلة</h3><button class="close-drawer" id="closeWishlist"><i class="fa-solid fa-xmark"></i></button></div>
+        <div class="drawer-items" id="wishlistItemsContainer"><p style="text-align: center; color: var(--text-muted); margin-top: 40px;">لا توجد عطور في المفضلة</p></div>
     </div>
 
-    <!-- نافذة تفاصيل المنتج المستقلة (Modal) -->
     <div class="modal-overlay" id="productModal">
         <div class="modal-content">
             <button class="modal-close" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
-            <div style="flex: 1; text-align: center;">
-                <img src="" alt="" id="modalImg" style="max-height: 280px; object-fit: contain;">
-            </div>
+            <div style="flex: 1; text-align: center;"><img src="" alt="" id="modalImg" style="max-height: 280px; object-fit: contain;"></div>
             <div style="flex: 1; text-align: right;">
                 <h2 id="modalTitle" style="color: var(--gold); margin-bottom: 10px;"></h2>
                 <div class="product-rating" id="modalRating" style="margin-bottom: 10px;"></div>
                 <div class="product-price" id="modalPrice" style="font-size: 18px; margin-bottom: 15px;"></div>
                 <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 10px;"><b>الوصف:</b> عطر فاخر بتركيبة مركزة وثبات طويل طوال اليوم.</p>
-                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;"><b>الحجم:</b> 100 مل</p>
-                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;"><b>النوتات العطرية:</b> أخشاب، فانيليا، زهور فاخرة.</p>
                 <button class="btn" id="modalAddBtn" style="width: 100%; border-radius: 20px;">أضف إلى السلة</button>
             </div>
         </div>
     </div>
 
-    <!-- الإشعار العائم (Toast) -->
     <div class="toast" id="toastNotification">تمت الإضافة بنجاح</div>
 
+    <!-- سكربتات مكتبة Firebase للربط السحابي -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // إعدادات الربط الخاصة بمشروعك BakrStore
+        const firebaseConfig = {
+            apiKey: "AIzaSyDY_Iv0qje6q8R_Fwk0dKqNJ25tEPYBVQw",
+            authDomain: "bakrstore-b47a0.firebaseapp.com",
+            projectId: "bakrstore-b47a0",
+            storageBucket: "bakrstore-b47a0.firebasestorage.app",
+            messagingSenderId: "120004689641",
+            appId: "1:120004689641:web:5c55b3a2d557c10681fa78",
+            measurementId: "G-C3GFJVBXLD"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // جلب وعرض التعليقات من فايربيز لجميع الزوار
+        window.fetchReviews = async function() {
+            const container = document.getElementById('reviewsContainer');
+            try {
+                const q = query(collection(db, "reviews"));
+                const querySnapshot = await getDocs(q);
+                container.innerHTML = '';
+                if(querySnapshot.empty) {
+                    container.innerHTML = '<p style="text-align: center; color: var(--text-muted);">كن أول من يكتب تقييماً!</p>';
+                    return;
+                }
+                querySnapshot.forEach((doc) => {
+                    const rev = doc.data();
+                    const stars = '<i class="fa-solid fa-star" style="color: #f39c12;"></i>'.repeat(rev.rating);
+                    container.innerHTML += `
+                        <div style="background-color: var(--bg-color); padding: 15px 20px; border-radius: 10px; border: 1px solid var(--border-color);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                                <h4 style="font-size: 15px; color: var(--gold);">${rev.name}</h4>
+                                <div style="font-size: 13px;">${stars}</div>
+                            </div>
+                            <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6;">${rev.text}</p>
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                container.innerHTML = '<p style="text-align: center; color: #ff4757;">خطأ في تحميل التعليقات.</p>';
+            }
+        }
+
+        // إضافة تعليق جديد إلى قاعدة البيانات السحابية
+        window.addNewReview = async function(event) {
+            event.preventDefault();
+            const name = document.getElementById('reviewerName').value;
+            const rating = parseInt(document.getElementById('reviewRating').value);
+            const text = document.getElementById('reviewText').value;
+
+            try {
+                await addDoc(collection(db, "reviews"), {
+                    name: name,
+                    rating: rating,
+                    text: text,
+                    createdAt: new Date()
+                });
+                document.getElementById('reviewForm').reset();
+                showToast('شكراً لك! تم نشر تقييمك بنجاح ⭐');
+                fetchReviews();
+            } catch (error) {
+                alert('حدث خطأ أثناء إرسال التعليق');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchReviews();
+        });
+    </script>
+
     <script>
+        // بيانات المنتجات والتحكم في المتجر
         const products = [
             { id: 1, name: "1 Million", category: "men", price: 160, rating: 5, img: "images/1 Million.jpg" },
             { id: 2, name: "212 Black Red", category: "men", price: 150, rating: 4, img: "images/212 Black Red.jpg" },
@@ -716,7 +403,6 @@
         let cart = [];
         let wishlist = [];
 
-        // عرض المنتجات
         function displayProducts(items) {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
@@ -747,17 +433,13 @@
             });
         }
 
-        // إشعار صغير (Toast)
         function showToast(message) {
             const toast = document.getElementById('toastNotification');
             toast.innerText = message;
             toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2500);
+            setTimeout(() => { toast.classList.remove('show'); }, 2500);
         }
 
-        // التحكم بالسلة
         function addToCart(id) {
             const product = products.find(p => p.id === id);
             cart.push(product);
@@ -779,10 +461,7 @@
                 total += item.price;
                 container.innerHTML += `
                     <div class="drawer-item">
-                        <div>
-                            <h4 style="font-size: 14px; margin-bottom: 3px;">${item.name}</h4>
-                            <span style="color: var(--gold); font-size: 13px;">${item.price} ريال</span>
-                        </div>
+                        <div><h4 style="font-size: 14px; margin-bottom: 3px;">${item.name}</h4><span style="color: var(--gold); font-size: 13px;">${item.price} ريال</span></div>
                         <button onclick="removeFromCart(${index})" style="background:none; border:none; color:#ff4757; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 `;
@@ -795,17 +474,11 @@
             updateCart();
         }
 
-        // التحكم بالمفضلة
         function toggleWishlist(id) {
             const product = products.find(p => p.id === id);
             const index = wishlist.findIndex(item => item.id === id);
-            if(index > -1) {
-                wishlist.splice(index, 1);
-                showToast('تمت الإزالة من المفضلة');
-            } else {
-                wishlist.push(product);
-                showToast('تمت الإضافة إلى المفضلة ❤️');
-            }
+            if(index > -1) { wishlist.splice(index, 1); showToast('تمت الإزالة من المفضلة'); }
+            else { wishlist.push(product); showToast('تمت الإضافة إلى المفضلة ❤️'); }
             updateWishlist();
             displayProducts(products);
         }
@@ -813,64 +486,44 @@
         function updateWishlist() {
             document.getElementById('wishlistCount').innerText = wishlist.length;
             const container = document.getElementById('wishlistItemsContainer');
-            if(wishlist.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-muted); margin-top: 40px;">لا توجد عطور في المفضلة</p>';
-                return;
-            }
+            if(wishlist.length === 0) { container.innerHTML = '<p style="text-align: center; color: var(--text-muted); margin-top: 40px;">لا توجد عطور في المفضلة</p>'; return; }
             container.innerHTML = '';
             wishlist.forEach((item, index) => {
                 container.innerHTML += `
                     <div class="drawer-item">
-                        <div>
-                            <h4 style="font-size: 14px; margin-bottom: 3px;">${item.name}</h4>
-                            <span style="color: var(--gold); font-size: 13px;">${item.price} ريال</span>
-                        </div>
+                        <div><h4 style="font-size: 14px; margin-bottom: 3px;">${item.name}</h4><span style="color: var(--gold); font-size: 13px;">${item.price} ريال</span></div>
                         <button onclick="wishlist.splice(${index},1); updateWishlist(); displayProducts(products);" style="background:none; border:none; color:#ff4757; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 `;
             });
         }
 
-        // تبديل الوضع (الليلي / الفاتح)
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         themeToggle.addEventListener('click', () => {
             document.documentElement.classList.toggle('light-mode');
-            if(document.documentElement.classList.contains('light-mode')) {
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
-            } else {
-                themeIcon.classList.replace('fa-sun', 'fa-moon');
-            }
+            if(document.documentElement.classList.contains('light-mode')) themeIcon.classList.replace('fa-moon', 'fa-sun');
+            else themeIcon.classList.replace('fa-sun', 'fa-moon');
         });
 
-        // نافذة تفاصيل المنتج (Modal)
         function openModal(id) {
             const product = products.find(p => p.id === id);
             document.getElementById('modalImg').src = product.img;
             document.getElementById('modalTitle').innerText = product.name;
             document.getElementById('modalPrice').innerText = product.price + ' ريال';
             document.getElementById('modalRating').innerHTML = '<i class="fa-solid fa-star"></i>'.repeat(product.rating);
-            document.getElementById('modalAddBtn').onclick = () => {
-                addToCart(product.id);
-                closeModalFunc();
-            };
+            document.getElementById('modalAddBtn').onclick = () => { addToCart(product.id); closeModalFunc(); };
             document.getElementById('productModal').style.display = 'flex';
         }
 
-        function closeModalFunc() {
-            document.getElementById('productModal').style.display = 'none';
-        }
-
+        function closeModalFunc() { document.getElementById('productModal').style.display = 'none'; }
         document.getElementById('closeModal').addEventListener('click', closeModalFunc);
 
-        // فتح وإغلاق القوائم الجانبية
         document.getElementById('cartBtn').addEventListener('click', () => document.getElementById('cartDrawer').classList.add('open'));
         document.getElementById('closeCart').addEventListener('click', () => document.getElementById('cartDrawer').classList.remove('open'));
-        
         document.getElementById('wishlistBtn').addEventListener('click', () => document.getElementById('wishlistDrawer').classList.add('open'));
         document.getElementById('closeWishlist').addEventListener('click', () => document.getElementById('wishlistDrawer').classList.remove('open'));
 
-        // التصفية والبحث
         document.querySelectorAll('.cat-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -890,7 +543,6 @@
             document.getElementById('navLinks').classList.toggle('active');
         });
 
-        // التشغيل الأولي
         displayProducts(products);
     </script>
 </body>
