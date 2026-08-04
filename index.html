@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="dark-mode">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +8,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* ثيم الألوان (الوضع الليلي والوضع الفاتح) */
         :root {
             --bg-color: #2b323b;
-            --gold: #dfba73;
-            --gold-dark: #c5a059;
+            --card-bg: #353e4a;
             --text-main: #ffffff;
             --text-muted: #b0b7c3;
-            --card-bg: #353e4a;
-            --transition: all 0.3s ease;
+            --gold: #dfba73;
+            --gold-dark: #c5a059;
+            --border-color: rgba(223, 186, 115, 0.15);
+            --header-bg: rgba(43, 50, 59, 0.95);
+        }
+
+        .light-mode {
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #666f7d;
+            --gold: #b89750;
+            --gold-dark: #96773d;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --header-bg: rgba(255, 255, 255, 0.95);
         }
 
         * {
@@ -24,6 +37,7 @@
             box-sizing: border-box;
             font-family: 'Cairo', sans-serif;
             scroll-behavior: smooth;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         body {
@@ -49,10 +63,10 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px 6%;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
-            background-color: rgba(43, 50, 59, 0.95);
+            background-color: var(--header-bg);
             backdrop-filter: blur(10px);
             z-index: 1000;
         }
@@ -73,7 +87,6 @@
             text-decoration: none;
             font-size: 15px;
             font-weight: 600;
-            transition: var(--transition);
         }
 
         .nav-links a:hover, .nav-links a.active {
@@ -82,7 +95,7 @@
 
         .header-icons {
             display: flex;
-            gap: 20px;
+            gap: 18px;
             align-items: center;
         }
 
@@ -93,14 +106,13 @@
             font-size: 18px;
             cursor: pointer;
             position: relative;
-            transition: var(--transition);
         }
 
         .icon-btn:hover {
             color: var(--gold);
         }
 
-        .cart-badge {
+        .badge {
             position: absolute;
             top: -8px;
             right: -10px;
@@ -120,7 +132,6 @@
             display: none;
             font-size: 24px;
             cursor: pointer;
-            color: var(--text-main);
         }
 
         /* Hero Section */
@@ -136,10 +147,8 @@
 
         .back-video {
             position: absolute;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
+            right: 0; bottom: 0;
+            min-width: 100%; min-height: 100%;
             z-index: -1;
             object-fit: cover;
         }
@@ -176,7 +185,7 @@
             font-weight: 600;
             border-radius: 30px;
             text-decoration: none;
-            transition: var(--transition);
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -185,10 +194,9 @@
             box-shadow: 0 5px 20px rgba(223, 186, 115, 0.3);
         }
 
-        /* Main Content & Store */
+        /* Store Section */
         .store-section {
             padding: 60px 6%;
-            background-color: #242a32;
         }
 
         .controls-bar {
@@ -210,12 +218,11 @@
             width: 100%;
             padding: 12px 40px 12px 15px;
             background-color: var(--card-bg);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid var(--border-color);
             border-radius: 25px;
             color: var(--text-main);
             outline: none;
             font-size: 14px;
-            transition: var(--transition);
         }
 
         .search-box input:focus {
@@ -238,14 +245,13 @@
 
         .cat-btn {
             background-color: var(--card-bg);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid var(--border-color);
             color: var(--text-muted);
             padding: 8px 18px;
             border-radius: 20px;
             cursor: pointer;
             font-size: 14px;
             font-weight: 600;
-            transition: var(--transition);
         }
 
         .cat-btn.active, .cat-btn:hover {
@@ -264,46 +270,71 @@
             background-color: var(--card-bg);
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid rgba(223, 186, 115, 0.1);
-            transition: var(--transition);
+            border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             padding: 15px;
             text-align: center;
+            position: relative;
         }
 
         .product-card:hover {
             transform: translateY(-6px);
             border-color: var(--gold);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .wishlist-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.4);
+            border: none;
+            color: #fff;
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            z-index: 10;
+        }
+
+        .wishlist-icon.active {
+            color: #ff4757;
         }
 
         .product-img-box {
             width: 100%;
             height: 220px;
-            background-color: #2b323b;
+            background-color: rgba(0,0,0,0.05);
             border-radius: 8px;
             overflow: hidden;
             cursor: pointer;
             position: relative;
             margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .product-img-box img {
-            width: 100%;
-            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
             padding: 10px;
-            transition: var(--transition);
-        }
-
-        .product-img-box:hover img {
-            transform: scale(1.06);
         }
 
         .product-card h3 {
             font-size: 16px;
             font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .product-rating {
+            color: #f39c12;
+            font-size: 13px;
             margin-bottom: 8px;
         }
 
@@ -327,14 +358,13 @@
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: var(--transition);
             border: none;
         }
 
         .details-btn {
             background-color: transparent;
             color: var(--text-main);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid var(--border-color);
         }
 
         .details-btn:hover {
@@ -351,35 +381,35 @@
             background-color: var(--gold-dark);
         }
 
-        /* Cart Drawer */
-        .cart-drawer {
+        /* Cart & Wishlist Drawers */
+        .drawer {
             position: fixed;
-            top: 0; left: -380px;
+            top: 0; right: -380px;
             width: 360px;
             height: 100%;
-            background-color: #353e4a;
-            box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+            background-color: var(--card-bg);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.3);
             z-index: 2000;
-            transition: var(--transition);
             display: flex;
             flex-direction: column;
             padding: 20px;
+            transition: right 0.4s ease;
         }
 
-        .cart-drawer.open {
-            left: 0;
+        .drawer.open {
+            right: 0;
         }
 
-        .cart-header {
+        .drawer-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid var(--border-color);
             padding-bottom: 15px;
             margin-bottom: 15px;
         }
 
-        .close-cart {
+        .close-drawer {
             background: none;
             border: none;
             color: var(--text-main);
@@ -387,7 +417,7 @@
             cursor: pointer;
         }
 
-        .cart-items {
+        .drawer-items {
             flex: 1;
             overflow-y: auto;
             display: flex;
@@ -395,38 +425,26 @@
             gap: 12px;
         }
 
-        .cart-item {
+        .drawer-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #2b323b;
+            background-color: var(--bg-color);
             padding: 10px;
             border-radius: 8px;
         }
 
-        .cart-footer {
-            border-top: 1px solid rgba(255,255,255,0.1);
+        .drawer-footer {
+            border-top: 1px solid var(--border-color);
             padding-top: 15px;
         }
 
-        .checkout-btn {
-            width: 100%;
-            background-color: var(--gold);
-            color: #1a1a1a;
-            border: none;
-            padding: 12px;
-            border-radius: 25px;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        /* Product Modal (Popup) */
+        /* Product Detail Modal */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(0,0,0,0.75);
             display: none;
             justify-content: center;
             align-items: center;
@@ -437,45 +455,54 @@
         .modal-content {
             background-color: var(--card-bg);
             border-radius: 15px;
-            max-width: 600px;
+            max-width: 650px;
             width: 100%;
             padding: 30px;
             position: relative;
             border: 1px solid var(--gold);
             display: flex;
-            flex-direction: column;
+            gap: 30px;
             align-items: center;
-            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                flex-direction: column;
+                text-align: center;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
         }
 
         .modal-close {
             position: absolute;
             top: 15px; left: 15px;
-            background: none;
-            border: none;
-            color: var(--text-main);
-            font-size: 22px;
-            cursor: pointer;
+            background: none; border: none;
+            color: var(--text-main); font-size: 22px; cursor: pointer;
         }
 
-        .modal-img {
-            max-height: 300px;
-            object-fit: contain;
-            margin-bottom: 20px;
-            border-radius: 8px;
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: -60px; right: 30px;
+            background-color: var(--gold);
+            color: #1a1a1a;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 4000;
+            transition: bottom 0.4s ease;
         }
 
-        /* About & Contact Sections */
+        .toast.show {
+            bottom: 30px;
+        }
+
+        /* Info Sections */
         .info-section {
             padding: 70px 8%;
-            background-color: #2b323b;
             text-align: center;
-        }
-
-        .info-section h2 {
-            color: var(--gold);
-            font-size: 32px;
-            margin-bottom: 20px;
         }
 
         .contact-form {
@@ -490,17 +517,12 @@
             width: 100%;
             padding: 12px;
             background-color: var(--card-bg);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             color: var(--text-main);
             outline: none;
         }
 
-        .contact-form input:focus, .contact-form textarea:focus {
-            border-color: var(--gold);
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -508,9 +530,9 @@
                 position: absolute;
                 top: 70px; right: 0;
                 width: 100%;
-                background-color: #2b323b;
+                background-color: var(--header-bg);
                 padding: 20px;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
+                border-bottom: 1px solid var(--border-color);
             }
             .nav-links.active {
                 display: flex;
@@ -537,9 +559,16 @@
             <li><a href="#contact">تواصل معنا</a></li>
         </ul>
         <div class="header-icons">
-            <button class="icon-btn" id="cartBtn">
+            <button class="icon-btn" id="themeToggle" title="تغيير المظهر">
+                <i class="fa-solid fa-moon" id="themeIcon"></i>
+            </button>
+            <button class="icon-btn" id="wishlistBtn" title="المفضلة">
+                <i class="fa-solid fa-heart"></i>
+                <span class="badge" id="wishlistCount">0</span>
+            </button>
+            <button class="icon-btn" id="cartBtn" title="السلة">
                 <i class="fa-solid fa-bag-shopping"></i>
-                <span class="cart-badge" id="cartCount">0</span>
+                <span class="badge" id="cartCount">0</span>
             </button>
             <div class="hamburger" id="hamburger">
                 <i class="fa-solid fa-bars"></i>
@@ -574,22 +603,22 @@
         </div>
 
         <div class="products-grid" id="productsGrid">
-            <!-- سيتم توليد العطور تلقائياً عبر البرمجة لضمان السرعة والتحكم الكامل -->
+            <!-- المنتجات تولد تلقائياً -->
         </div>
     </section>
 
     <!-- من نحن -->
     <section class="info-section" id="about">
         <h2>من نحن</h2>
-        <p style="max-width: 700px; margin: 0 auto; color: var(--text-muted); line-height: 1.8;">
-            متجر **بكر (Bakr)** وجهتك الأولى لعالم العطور الفاخرة والفريدة. نسعى دائماً لتقديم أجود التركيبة العطرية المستوحاة من أرقى الماركات العالمية لترضي ذوقك الرفيع وترافقك في كل أوقاتك المميزة.
+        <p style="max-width: 700px; margin: 15px auto; color: var(--text-muted); line-height: 1.8;">
+            متجر **بكر (Bakr)** وجهتك الأولى لعالم العطور الفاخرة والفريدة. نسعى دائماً لتقديم أجود التركيبات العطرية المستوحاة من أرقى الماركات العالمية لترضي ذوقك الرفيع.
         </p>
     </section>
 
     <!-- تواصل معنا -->
-    <section class="info-section" id="contact" style="background-color: #242a32;">
+    <section class="info-section" id="contact" style="background-color: var(--card-bg);">
         <h2>تواصل معنا</h2>
-        <form class="contact-form" onsubmit="event.preventDefault(); alert('تم إرسال رسالتك بنجاح، سنتواصل معك قريباً!');">
+        <form class="contact-form" onsubmit="event.preventDefault(); showToast('تم إرسال رسالتك بنجاح!');">
             <input type="text" placeholder="اسمك الكريم" required>
             <input type="email" placeholder="بريدك الإلكتروني" required>
             <textarea rows="4" placeholder="رسالتك أو استفسارك..." required></textarea>
@@ -597,76 +626,97 @@
         </form>
     </section>
 
-    <!-- سلة الشراء الجانبية -->
-    <div class="cart-drawer" id="cartDrawer">
-        <div class="cart-header">
+    <!-- سلة الشراء -->
+    <div class="drawer" id="cartDrawer">
+        <div class="drawer-header">
             <h3>سلة المشتريات</h3>
-            <button class="close-cart" id="closeCart"><i class="fa-solid fa-xmark"></i></button>
+            <button class="close-drawer" id="closeCart"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div class="cart-items" id="cartItemsContainer">
+        <div class="drawer-items" id="cartItemsContainer">
             <p style="text-align: center; color: var(--text-muted); margin-top: 40px;">السلة فارغة حالياً</p>
         </div>
-        <div class="cart-footer">
+        <div class="drawer-footer">
             <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 700;">
                 <span>المجموع:</span>
                 <span id="cartTotal">0 ريال</span>
             </div>
-            <button class="checkout-btn" onclick="alert('تم إتمام الطلب بنجاح!')">إتمام الطلب</button>
+            <button class="btn" style="width: 100%; border-radius: 20px;" onclick="showToast('تم إتمام الطلب بنجاح!')">إتمام الطلب</button>
         </div>
     </div>
 
-    <!-- نافذة تفاصيل المنتج -->
+    <!-- قائمة المفضلة -->
+    <div class="drawer" id="wishlistDrawer">
+        <div class="drawer-header">
+            <h3>قائمة المفضلة</h3>
+            <button class="close-drawer" id="closeWishlist"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-items" id="wishlistItemsContainer">
+            <p style="text-align: center; color: var(--text-muted); margin-top: 40px;">لا توجد عطور في المفضلة</p>
+        </div>
+    </div>
+
+    <!-- نافذة تفاصيل المنتج المستقلة (Modal) -->
     <div class="modal-overlay" id="productModal">
         <div class="modal-content">
             <button class="modal-close" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
-            <img src="" alt="" class="modal-img" id="modalImg">
-            <h3 id="modalTitle" style="font-size: 20px; color: var(--gold); margin-bottom: 10px;"></h3>
-            <p class="product-price" id="modalPrice">150 ريال</p>
-            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">عطر فاخر أصلي بتركيبة مميزة وثبات عالٍ طوال اليوم.</p>
-            <button class="buy-btn" id="modalAddBtn" style="padding: 10px 30px; border-radius: 20px;">أضف إلى السلة</button>
+            <div style="flex: 1; text-align: center;">
+                <img src="" alt="" id="modalImg" style="max-height: 280px; object-fit: contain;">
+            </div>
+            <div style="flex: 1; text-align: right;">
+                <h2 id="modalTitle" style="color: var(--gold); margin-bottom: 10px;"></h2>
+                <div class="product-rating" id="modalRating" style="margin-bottom: 10px;"></div>
+                <div class="product-price" id="modalPrice" style="font-size: 18px; margin-bottom: 15px;"></div>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 10px;"><b>الوصف:</b> عطر فاخر بتركيبة مركزة وثبات طويل طوال اليوم.</p>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;"><b>الحجم:</b> 100 مل</p>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;"><b>النوتات العطرية:</b> أخشاب، فانيليا، زهور فاخرة.</p>
+                <button class="btn" id="modalAddBtn" style="width: 100%; border-radius: 20px;">أضف إلى السلة</button>
+            </div>
         </div>
     </div>
 
+    <!-- الإشعار العائم (Toast) -->
+    <div class="toast" id="toastNotification">تمت الإضافة بنجاح</div>
+
     <script>
-        // قائمة المنتجات مع الصور والأسماء
         const products = [
-            { id: 1, name: "1 Million", category: "men", price: 160, img: "images/1 Million.jpg" },
-            { id: 2, name: "212 Black Red", category: "men", price: 150, img: "images/212 Black Red.jpg" },
-            { id: 3, name: "Allure Chanel", category: "women", price: 180, img: "images/Allure Chanel.jpg" },
-            { id: 4, name: "Angel's Share", category: "men", price: 190, img: "images/Angel's Share.jpg" },
-            { id: 5, name: "Arabian Tonka", category: "men", price: 170, img: "images/Arabian Tonka.jpg" },
-            { id: 6, name: "Babycat", category: "women", price: 165, img: "images/Babycat.jpg" },
-            { id: 7, name: "Baccarat Rouge", category: "women", price: 200, img: "images/Baccarat Rouge.jpg" },
-            { id: 8, name: "Barboss 50", category: "men", price: 140, img: "images/Barboss 50.jpg" },
-            { id: 9, name: "Black Lacquer", category: "men", price: 185, img: "images/Black Lacquer.jpg" },
-            { id: 10, name: "Black Opium", category: "women", price: 175, img: "images/Black Opium.jpg" },
-            { id: 11, name: "Bleu de Chanel", category: "men", price: 190, img: "images/Bleu de Chanel.jpg" },
-            { id: 12, name: "Blue Laverne", category: "men", price: 150, img: "images/Blue Laverne.jpg" },
-            { id: 13, name: "Bois Imperial", category: "men", price: 175, img: "images/Bois Imperial.jpg" },
-            { id: 14, name: "Bois Pacific", category: "men", price: 160, img: "images/Bois Pacific.jpg" },
-            { id: 15, name: "Bois Talisman 111", category: "men", price: 180, img: "images/Bois Talisman 111.jpg" },
-            { id: 16, name: "Boss 50", category: "men", price: 145, img: "images/Boss 50.jpg" },
-            { id: 17, name: "Boss Oud", category: "men", price: 190, img: "images/Boss Oud.jpg" },
-            { id: 18, name: "Burberry Her Elixir", category: "women", price: 170, img: "images/Burberry Her Elixir.jpg" },
-            { id: 19, name: "Burberry Her", category: "women", price: 165, img: "images/Burberry Her.jpg" },
-            { id: 20, name: "Burberry Hero", category: "men", price: 160, img: "images/Burberry Hero.jpg" },
-            { id: 21, name: "Bvlgari Tygar", category: "men", price: 210, img: "images/Bvlgari Tygar.jpg" },
-            { id: 22, name: "Charnier Grès", category: "women", price: 155, img: "images/Charnier Grès.jpg" },
-            { id: 23, name: "Coco Chanel", category: "women", price: 195, img: "images/Coco Chanel.jpg" },
-            { id: 24, name: "Creed Aventus", category: "men", price: 220, img: "images/Creed Aventus.jpg" },
-            { id: 25, name: "Creed Silver", category: "men", price: 210, img: "images/Creed Silver.jpg" },
-            { id: 26, name: "Deer Laverne", category: "men", price: 150, img: "images/Deer Laverne.jpg" },
-            { id: 27, name: "Dictator - Thunayan", category: "men", price: 180, img: "images/Dictator - Thunayan.jpg" },
-            { id: 28, name: "Dior Homme", category: "men", price: 185, img: "images/Dior Homme.jpg" },
-            { id: 29, name: "Escada Moon", category: "women", price: 140, img: "images/Escada Moon.jpg" },
-            { id: 30, name: "God of Fire", category: "men", price: 230, img: "images/God of Fire.jpg" },
-            { id: 31, name: "Guidance 46", category: "women", price: 220, img: "images/Guidance 46.jpg" },
-            { id: 32, name: "Hypnotic Poison", category: "women", price: 165, img: "images/Hypnotic Poison.jpg" }
+            { id: 1, name: "1 Million", category: "men", price: 160, rating: 5, img: "images/1 Million.jpg" },
+            { id: 2, name: "212 Black Red", category: "men", price: 150, rating: 4, img: "images/212 Black Red.jpg" },
+            { id: 3, name: "Allure Chanel", category: "women", price: 180, rating: 5, img: "images/Allure Chanel.jpg" },
+            { id: 4, name: "Angel's Share", category: "men", price: 190, rating: 5, img: "images/Angel's Share.jpg" },
+            { id: 5, name: "Arabian Tonka", category: "men", price: 170, rating: 4, img: "images/Arabian Tonka.jpg" },
+            { id: 6, name: "Babycat", category: "women", price: 165, rating: 5, img: "images/Babycat.jpg" },
+            { id: 7, name: "Baccarat Rouge", category: "women", price: 200, rating: 5, img: "images/Baccarat Rouge.jpg" },
+            { id: 8, name: "Barboss 50", category: "men", price: 140, rating: 4, img: "images/Barboss 50.jpg" },
+            { id: 9, name: "Black Lacquer", category: "men", price: 185, rating: 5, img: "images/Black Lacquer.jpg" },
+            { id: 10, name: "Black Opium", category: "women", price: 175, rating: 5, img: "images/Black Opium.jpg" },
+            { id: 11, name: "Bleu de Chanel", category: "men", price: 190, rating: 5, img: "images/Bleu de Chanel.jpg" },
+            { id: 12, name: "Blue Laverne", category: "men", price: 150, rating: 4, img: "images/Blue Laverne.jpg" },
+            { id: 13, name: "Bois Imperial", category: "men", price: 175, rating: 5, img: "images/Bois Imperial.jpg" },
+            { id: 14, name: "Bois Pacific", category: "men", price: 160, rating: 4, img: "images/Bois Pacific.jpg" },
+            { id: 15, name: "Bois Talisman 111", category: "men", price: 180, rating: 5, img: "images/Bois Talisman 111.jpg" },
+            { id: 16, name: "Boss 50", category: "men", price: 145, rating: 4, img: "images/Boss 50.jpg" },
+            { id: 17, name: "Boss Oud", category: "men", price: 190, rating: 5, img: "images/Boss Oud.jpg" },
+            { id: 18, name: "Burberry Her Elixir", category: "women", price: 170, rating: 5, img: "images/Burberry Her Elixir.jpg" },
+            { id: 19, name: "Burberry Her", category: "women", price: 165, rating: 4, img: "images/Burberry Her.jpg" },
+            { id: 20, name: "Burberry Hero", category: "men", price: 160, rating: 4, img: "images/Burberry Hero.jpg" },
+            { id: 21, name: "Bvlgari Tygar", category: "men", price: 210, rating: 5, img: "images/Bvlgari Tygar.jpg" },
+            { id: 22, name: "Charnier Grès", category: "women", price: 155, rating: 4, img: "images/Charnier Grès.jpg" },
+            { id: 23, name: "Coco Chanel", category: "women", price: 195, rating: 5, img: "images/Coco Chanel.jpg" },
+            { id: 24, name: "Creed Aventus", category: "men", price: 220, rating: 5, img: "images/Creed Aventus.jpg" },
+            { id: 25, name: "Creed Silver", category: "men", price: 210, rating: 5, img: "images/Creed Silver.jpg" },
+            { id: 26, name: "Deer Laverne", category: "men", price: 150, rating: 4, img: "images/Deer Laverne.jpg" },
+            { id: 27, name: "Dictator - Thunayan", category: "men", price: 180, rating: 5, img: "images/Dictator - Thunayan.jpg" },
+            { id: 28, name: "Dior Homme", category: "men", price: 185, rating: 5, img: "images/Dior Homme.jpg" },
+            { id: 29, name: "Escada Moon", category: "women", price: 140, rating: 4, img: "images/Escada Moon.jpg" },
+            { id: 30, name: "God of Fire", category: "men", price: 230, rating: 5, img: "images/God of Fire.jpg" },
+            { id: 31, name: "Guidance 46", category: "women", price: 220, rating: 5, img: "images/Guidance 46.jpg" },
+            { id: 32, name: "Hypnotic Poison", category: "women", price: 165, rating: 4, img: "images/Hypnotic Poison.jpg" }
         ];
 
         let cart = [];
+        let wishlist = [];
 
-        // عرض المنتجات في الصفحة
+        // عرض المنتجات
         function displayProducts(items) {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
@@ -675,12 +725,18 @@
                 return;
             }
             items.forEach(product => {
+                const isWishlisted = wishlist.some(item => item.id === product.id);
+                const stars = '<i class="fa-solid fa-star"></i>'.repeat(product.rating);
                 grid.innerHTML += `
                     <div class="product-card">
+                        <button class="wishlist-icon ${isWishlisted ? 'active' : ''}" onclick="toggleWishlist(${product.id})">
+                            <i class="fa-solid fa-heart"></i>
+                        </button>
                         <div class="product-img-box" onclick="openModal(${product.id})">
                             <img src="${product.img}" alt="${product.name}">
                         </div>
                         <h3>${product.name}</h3>
+                        <div class="product-rating">${stars}</div>
                         <div class="product-price">${product.price} ريال</div>
                         <div class="card-actions">
                             <button class="action-btn details-btn" onclick="openModal(${product.id})">التفاصيل</button>
@@ -691,33 +747,22 @@
             });
         }
 
-        // تصفية الأقسام
-        document.querySelectorAll('.cat-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                const filter = e.target.getAttribute('data-filter');
-                if(filter === 'all') {
-                    displayProducts(products);
-                } else {
-                    displayProducts(products.filter(p => p.category === filter));
-                }
-            });
-        });
+        // إشعار صغير (Toast)
+        function showToast(message) {
+            const toast = document.getElementById('toastNotification');
+            toast.innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
 
-        // محرك البحث الفوري
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            const filtered = products.filter(p => p.name.toLowerCase().includes(term));
-            displayProducts(filtered);
-        });
-
-        // إدارة السلة
+        // التحكم بالسلة
         function addToCart(id) {
             const product = products.find(p => p.id === id);
             cart.push(product);
             updateCart();
-            document.getElementById('cartDrawer').classList.add('open');
+            showToast('تمت إضافة العطر إلى السلة 🛒');
         }
 
         function updateCart() {
@@ -733,12 +778,12 @@
             cart.forEach((item, index) => {
                 total += item.price;
                 container.innerHTML += `
-                    <div class="cart-item">
+                    <div class="drawer-item">
                         <div>
                             <h4 style="font-size: 14px; margin-bottom: 3px;">${item.name}</h4>
                             <span style="color: var(--gold); font-size: 13px;">${item.price} ريال</span>
                         </div>
-                        <button onclick="removeFromCart(${index})" style="background:none; border:none; color:#ff6b6b; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
+                        <button onclick="removeFromCart(${index})" style="background:none; border:none; color:#ff4757; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 `;
             });
@@ -750,20 +795,61 @@
             updateCart();
         }
 
-        // فتح وإغلاق السلة
-        document.getElementById('cartBtn').addEventListener('click', () => {
-            document.getElementById('cartDrawer').classList.add('open');
-        });
-        document.getElementById('closeCart').addEventListener('click', () => {
-            document.getElementById('cartDrawer').classList.remove('open');
+        // التحكم بالمفضلة
+        function toggleWishlist(id) {
+            const product = products.find(p => p.id === id);
+            const index = wishlist.findIndex(item => item.id === id);
+            if(index > -1) {
+                wishlist.splice(index, 1);
+                showToast('تمت الإزالة من المفضلة');
+            } else {
+                wishlist.push(product);
+                showToast('تمت الإضافة إلى المفضلة ❤️');
+            }
+            updateWishlist();
+            displayProducts(products);
+        }
+
+        function updateWishlist() {
+            document.getElementById('wishlistCount').innerText = wishlist.length;
+            const container = document.getElementById('wishlistItemsContainer');
+            if(wishlist.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-muted); margin-top: 40px;">لا توجد عطور في المفضلة</p>';
+                return;
+            }
+            container.innerHTML = '';
+            wishlist.forEach((item, index) => {
+                container.innerHTML += `
+                    <div class="drawer-item">
+                        <div>
+                            <h4 style="font-size: 14px; margin-bottom: 3px;">${item.name}</h4>
+                            <span style="color: var(--gold); font-size: 13px;">${item.price} ريال</span>
+                        </div>
+                        <button onclick="wishlist.splice(${index},1); updateWishlist(); displayProducts(products);" style="background:none; border:none; color:#ff4757; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+            });
+        }
+
+        // تبديل الوضع (الليلي / الفاتح)
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('light-mode');
+            if(document.documentElement.classList.contains('light-mode')) {
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
         });
 
-        // نافذة التفاصيل (Modal)
+        // نافذة تفاصيل المنتج (Modal)
         function openModal(id) {
             const product = products.find(p => p.id === id);
             document.getElementById('modalImg').src = product.img;
             document.getElementById('modalTitle').innerText = product.name;
             document.getElementById('modalPrice').innerText = product.price + ' ريال';
+            document.getElementById('modalRating').innerHTML = '<i class="fa-solid fa-star"></i>'.repeat(product.rating);
             document.getElementById('modalAddBtn').onclick = () => {
                 addToCart(product.id);
                 closeModalFunc();
@@ -776,18 +862,35 @@
         }
 
         document.getElementById('closeModal').addEventListener('click', closeModalFunc);
-        window.addEventListener('click', (e) => {
-            if(e.target === document.getElementById('productModal')) {
-                closeModalFunc();
-            }
+
+        // فتح وإغلاق القوائم الجانبية
+        document.getElementById('cartBtn').addEventListener('click', () => document.getElementById('cartDrawer').classList.add('open'));
+        document.getElementById('closeCart').addEventListener('click', () => document.getElementById('cartDrawer').classList.remove('open'));
+        
+        document.getElementById('wishlistBtn').addEventListener('click', () => document.getElementById('wishlistDrawer').classList.add('open'));
+        document.getElementById('closeWishlist').addEventListener('click', () => document.getElementById('wishlistDrawer').classList.remove('open'));
+
+        // التصفية والبحث
+        document.querySelectorAll('.cat-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                const filter = e.target.getAttribute('data-filter');
+                if(filter === 'all') displayProducts(products);
+                else displayProducts(products.filter(p => p.category === filter));
+            });
         });
 
-        // قائمة الجوال (Hamburger)
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            displayProducts(products.filter(p => p.name.toLowerCase().includes(term)));
+        });
+
         document.getElementById('hamburger').addEventListener('click', () => {
             document.getElementById('navLinks').classList.toggle('active');
         });
 
-        // تشغيل العرض لأول مرة
+        // التشغيل الأولي
         displayProducts(products);
     </script>
 </body>
