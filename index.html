@@ -86,13 +86,27 @@
         }
         .btn:hover { background-color: var(--gold); color: #1a1a1a; box-shadow: 0 5px 20px rgba(223, 186, 115, 0.3); }
 
-        /* قسم البانرات الدعائية الكبيرة والفرعية */
+        /* قسم البانرات الدعائية مع تعديل البانر الرئيسي ليظهر كاملاً دون قص */
         .banners-section { padding: 40px 6% 0 6%; }
         .main-banner {
-            width: 100%; height: 220px; border-radius: 12px; overflow: hidden;
-            border: 1px solid var(--border-color); margin-bottom: 25px; position: relative;
+            width: 100%; 
+            height: auto; 
+            max-height: 400px; 
+            border-radius: 12px; 
+            overflow: hidden;
+            border: 1px solid var(--border-color); 
+            margin-bottom: 25px; 
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--card-bg);
         }
-        .main-banner img { width: 100%; height: 100%; object-fit: cover; }
+        .main-banner img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+        }
 
         .banners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .banner-card {
@@ -236,7 +250,7 @@
         </div>
     </section>
 
-    <!-- قسم البانرات (البانر الرئيسي + البانرات الفرعية: mens, womens, musk) -->
+    <!-- قسم البانرات (البانر الرئيسي + البانرات الفرعية) -->
     <section class="banners-section" id="banners">
         <div class="main-banner">
             <img src="images/banner.jpg" alt="البانر الرئيسي لعطور بكر">
@@ -437,7 +451,6 @@
     </script>
 
     <script>
-        // مصفوفة المنتجات والعطور متضمنة العطور الأربعة الجديدة بأسماؤها ومساراتها الدقيقة
         const products = [
             { id: 1, name: "Abaq (عبق)", category: "musk", rating: 5, img: "images/Abaq.jpg" },
             { id: 2, name: "Amiral (صندوق أميرال)", category: "men", rating: 5, img: "images/Amiral.jpg" },
