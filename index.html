@@ -51,7 +51,6 @@
             backdrop-filter: blur(10px); z-index: 1000;
         }
 
-        /* تعديل شعار بكر في أعلى الصفحة مع إطار ذهبي ولمسة فنية */
         .logo-container {
             display: flex;
             align-items: center;
@@ -349,10 +348,11 @@
             <i class="fa-brands fa-whatsapp"></i> تواصل معنا عبر الواتساب مباشرة
         </a>
 
-        <form class="contact-form" onsubmit="event.preventDefault(); showToast('تم إرسال رسالتك بنجاح!');" style="margin-top: 25px;">
-            <input type="text" placeholder="اسمك الكريم" required>
-            <textarea rows="3" placeholder="اكتب رسالتك أو استفسارك هنا..." required></textarea>
-            <button type="submit" class="btn" style="width: 100%;">إرسال الرسالة</button>
+        <!-- نموذج التواصل المحدث ليرسل عبر الواتساب مباشرة -->
+        <form class="contact-form" onsubmit="sendContactWhatsApp(event)" style="margin-top: 25px;">
+            <input type="text" id="contactName" placeholder="اسمك الكريم" required>
+            <textarea id="contactMessage" rows="3" placeholder="اكتب رسالتك أو استفسارك هنا..." required></textarea>
+            <button type="submit" class="btn" style="width: 100%;">إرسال الرسالة عبر الواتساب</button>
         </form>
 
         <div class="social-links" style="margin-top: 20px;">
@@ -627,6 +627,21 @@
 
             const phone = "967782525258";
             const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // دالة إرسال رسالة نموذج "تواصل معنا" عبر الواتساب مباشرة
+        function sendContactWhatsApp(event) {
+            event.preventDefault();
+            const name = document.getElementById('contactName').value;
+            const msg = document.getElementById('contactMessage').value;
+
+            let text = `مرحباً، لدي استفسار أو رسالة:\n\n`;
+            text += `*الاسم:* ${name}\n`;
+            text += `*الرسالة:* ${msg}`;
+
+            const phone = "967782525258";
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
             window.open(url, '_blank');
         }
 
