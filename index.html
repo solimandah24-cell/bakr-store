@@ -101,8 +101,10 @@
         .main-banner {
             width: 100%; display: block; border-radius: 12px;
             overflow: hidden; border: 1px solid var(--border-color);
-            margin-bottom: 25px; line-height: 0;
+            margin-bottom: 25px; line-height: 0; cursor: pointer;
+            transition: transform 0.4s ease, border-color 0.3s ease;
         }
+        .main-banner:hover { transform: scale(1.01); border-color: var(--gold); }
         .main-banner img { width: 100%; height: auto; display: block; }
 
         .banners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
@@ -248,8 +250,9 @@
     </section>
 
     <section class="banners-section" id="banners">
-        <div class="main-banner">
-            <img src="images/banner.jpg" alt="البانر الرئيسي لعطور بكر">
+        <!-- البانر الرئيسي أصبح هو بانر مجموعة المسك، وعند الضغط عليه يعرض العطور الأربعة المطلوبة -->
+        <div class="main-banner" onclick="filterByCategory('musk')">
+            <img src="images/musk-banner.jpg" alt="مجموعة المسك والفاخرة">
         </div>
         <div class="banners-grid">
             <div class="banner-card" onclick="filterByCategory('men')">
@@ -260,9 +263,9 @@
                 <img src="images/womens-banner.jpg" alt="العطور النسائية">
                 <div class="banner-overlay">العطور النسائية</div>
             </div>
-            <div class="banner-card" onclick="filterByCategory('musk')">
-                <img src="images/musk-banner.jpg" alt="مجموعة المسك">
-                <div class="banner-overlay">مجموعة المسك والفاخرة</div>
+            <div class="banner-card" onclick="filterByCategory('banner')">
+                <img src="images/banner.jpg" alt="تشكيلة بكر الخاصة">
+                <div class="banner-overlay">تشكيلة بكر الخاصة</div>
             </div>
         </div>
     </section>
@@ -277,7 +280,7 @@
                 <button class="cat-btn active" data-filter="all">الكل</button>
                 <button class="cat-btn" data-filter="men">رجالي</button>
                 <button class="cat-btn" data-filter="women">نسائي</button>
-                <button class="cat-btn" data-filter="musk">المسك</button>
+                <button class="cat-btn" data-filter="musk">مجموعة المسك</button>
             </div>
         </div>
         <div class="products-grid" id="productsGrid"></div>
@@ -319,12 +322,10 @@
         <h2>تواصل معنا</h2>
         <p style="color: var(--text-muted); margin: 10px 0 25px 0; font-size: 14px;">يسعدنا تواصلك معنا مباشرة عبر الواتساب أو ترك رسالة وسنرد عليك سريعاً</p>
 
-        <!-- زر كبير ومباشر للواتساب -->
         <a href="https://wa.me/967782525258" target="_blank" class="whatsapp-main-btn">
             <i class="fa-brands fa-whatsapp"></i> تواصل معنا عبر الواتساب مباشرة
         </a>
 
-        <!-- نموذج مبسط بدون بريد إلكتروني -->
         <form class="contact-form" onsubmit="event.preventDefault(); showToast('تم إرسال رسالتك بنجاح!');" style="margin-top: 25px;">
             <input type="text" placeholder="اسمك الكريم" required>
             <textarea rows="3" placeholder="اكتب رسالتك أو استفسارك هنا..." required></textarea>
@@ -450,9 +451,9 @@
     <script>
         const products = [
             { id: 1, name: "Abaq (عبق)", category: "musk", rating: 5, img: "images/Abaq.jpg" },
-            { id: 2, name: "Amiral (صندوق أميرال)", category: "men", rating: 5, img: "images/Amiral.jpg" },
-            { id: 3, name: "Essenc (إيسنس)", category: "women", rating: 5, img: "images/Essenc.jpg" },
-            { id: 4, name: "KM", category: "men", rating: 5, img: "images/KM.jpg" },
+            { id: 2, name: "Amiral (صندوق أميرال)", category: "musk", rating: 5, img: "images/Amiral.jpg" },
+            { id: 3, name: "Essenc (إيسنس)", category: "musk", rating: 5, img: "images/Essenc.jpg" },
+            { id: 4, name: "KM", category: "musk", rating: 5, img: "images/KM.jpg" },
             { id: 5, name: "1 Million", category: "men", rating: 5, img: "images/1 Million.jpg" },
             { id: 6, name: "212 Black Red", category: "men", rating: 4, img: "images/212 Black Red.jpg" },
             { id: 7, name: "Allure Chanel", category: "women", rating: 5, img: "images/Allure Chanel.jpg" },
