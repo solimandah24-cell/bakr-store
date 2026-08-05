@@ -82,7 +82,7 @@
         .btn {
             display: inline-block; background-color: transparent; color: var(--gold);
             border: 2px solid var(--gold); padding: 12px 35px; font-size: 15px; font-weight: 600;
-            border-radius: 30px; text-decoration: none; cursor: pointer;
+            border-radius: 30px; text-decoration: none; cursor: pointer; text-align: center;
         }
         .btn:hover { background-color: var(--gold); color: #1a1a1a; box-shadow: 0 5px 20px rgba(223, 186, 115, 0.3); }
 
@@ -250,9 +250,8 @@
     </section>
 
     <section class="banners-section" id="banners">
-        <!-- البانر الرئيسي أصبح هو بانر مجموعة المسك، وعند الضغط عليه يعرض العطور الأربعة المطلوبة -->
-        <div class="main-banner" onclick="filterByCategory('musk')">
-            <img src="images/musk-banner.jpg" alt="مجموعة المسك والفاخرة">
+        <div class="main-banner" onclick="filterByCategory('special')">
+            <img src="images/banner.jpg" alt="تشكيلة بكر الخاصة">
         </div>
         <div class="banners-grid">
             <div class="banner-card" onclick="filterByCategory('men')">
@@ -263,9 +262,9 @@
                 <img src="images/womens-banner.jpg" alt="العطور النسائية">
                 <div class="banner-overlay">العطور النسائية</div>
             </div>
-            <div class="banner-card" onclick="filterByCategory('banner')">
-                <img src="images/banner.jpg" alt="تشكيلة بكر الخاصة">
-                <div class="banner-overlay">تشكيلة بكر الخاصة</div>
+            <div class="banner-card" onclick="filterByCategory('musk')">
+                <img src="images/musk-banner.jpg" alt="مجموعة المسك">
+                <div class="banner-overlay">مجموعة المسك</div>
             </div>
         </div>
     </section>
@@ -280,7 +279,8 @@
                 <button class="cat-btn active" data-filter="all">الكل</button>
                 <button class="cat-btn" data-filter="men">رجالي</button>
                 <button class="cat-btn" data-filter="women">نسائي</button>
-                <button class="cat-btn" data-filter="musk">مجموعة المسك</button>
+                <button class="cat-btn" data-filter="musk">المسك</button>
+                <button class="cat-btn" data-filter="special">تشكيلة بكر الخاصة</button>
             </div>
         </div>
         <div class="products-grid" id="productsGrid"></div>
@@ -344,7 +344,7 @@
         <div class="drawer-items" id="cartItemsContainer"><p style="text-align: center; color: var(--text-muted); margin-top: 40px;">السلة فارغة حالياً</p></div>
         <div class="drawer-footer">
             <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 700;"><span>المجموع:</span><span id="cartTotal">0 ريال يمني</span></div>
-            <button class="btn" style="width: 100%; border-radius: 20px;" onclick="showToast('تم إتمام الطلب بنجاح!')">إتمام الطلب</button>
+            <button class="btn" style="width: 100%; border-radius: 20px;" onclick="checkoutWhatsApp()">إتمام الطلب عبر الواتساب</button>
         </div>
     </div>
 
@@ -450,10 +450,10 @@
 
     <script>
         const products = [
-            { id: 1, name: "Abaq (عبق)", category: "musk", rating: 5, img: "images/Abaq.jpg" },
-            { id: 2, name: "Amiral (صندوق أميرال)", category: "musk", rating: 5, img: "images/Amiral.jpg" },
-            { id: 3, name: "Essenc (إيسنس)", category: "musk", rating: 5, img: "images/Essenc.jpg" },
-            { id: 4, name: "KM", category: "musk", rating: 5, img: "images/KM.jpg" },
+            { id: 1, name: "Abaq (عبق)", category: "special", rating: 5, img: "images/Abaq.jpg" },
+            { id: 2, name: "Amiral (صندوق أميرال)", category: "special", rating: 5, img: "images/Amiral.jpg" },
+            { id: 3, name: "Essenc (إيسنس)", category: "special", rating: 5, img: "images/Essenc.jpg" },
+            { id: 4, name: "KM", category: "special", rating: 5, img: "images/KM.jpg" },
             { id: 5, name: "1 Million", category: "men", rating: 5, img: "images/1 Million.jpg" },
             { id: 6, name: "212 Black Red", category: "men", rating: 4, img: "images/212 Black Red.jpg" },
             { id: 7, name: "Allure Chanel", category: "women", rating: 5, img: "images/Allure Chanel.jpg" },
@@ -589,6 +589,24 @@
             updateCart();
         }
 
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                showToast('السلة فارغة حالياً!');
+                return;
+            }
+            let message = "مرحباً، أرغب في إتمام طلب العطور التالية:\n\n";
+            let total = 0;
+            cart.forEach((item, index) => {
+                message += `${index + 1}- ${item.name} | الحجم: ${item.size} مل | السعر: ${item.price.toLocaleString()} ريال\n`;
+                total += item.price;
+            });
+            message += `\nالمجموع الكلي: ${total.toLocaleString()} ريال يمني`;
+
+            const phone = "967782525258";
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
         function toggleWishlist(id) {
             const product = products.find(p => p.id === id);
             const index = wishlist.findIndex(item => item.id === id);
@@ -658,9 +676,7 @@
             const targetBtn = document.querySelector(`.cat-btn[data-filter="${cat}"]`);
             if(targetBtn) targetBtn.classList.add('active');
             
-            if(cat === 'all') displayProducts(products);
-            else displayProducts(products.filter(p => p.category === cat));
-            
+            displayProducts(products.filter(p => p.category === cat));
             window.scrollTo({ top: document.getElementById('store').offsetTop - 80, behavior: 'smooth' });
         }
 
