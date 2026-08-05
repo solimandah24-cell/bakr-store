@@ -88,22 +88,20 @@
 
         .banners-section { padding: 40px 6% 0 6%; }
         
-        /* -- التعديل الجديد الجذري لضمان عدم قص البانر أبداً -- */
         .main-banner {
             width: 100%;
-            display: block; /* تغيير العرض ليكون بلوك عادي لمنع أي تأثيرات من الفليكس */
+            display: block;
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid var(--border-color);
             margin-bottom: 25px;
-            line-height: 0; /* يمنع ظهور مسافة فارغة صغيرة أسفل الصورة */
+            line-height: 0;
         }
         .main-banner img {
             width: 100%;
-            height: auto; /* السماح للصورة بتحديد ارتفاعها تلقائياً بناءً على العرض */
+            height: auto;
             display: block;
         }
-        /* ---------------------------------------------------- */
 
         .banners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .banner-card {
@@ -221,7 +219,7 @@
     <div class="top-bar">✨ عطور بكر الفاخرة | الأسعار بالريال اليمني ✨</div>
 
     <header>
-        <div class="logo-container"><img src="logo.jpg" alt="شعار بكر"></div>
+        <div class="logo-container"><img src="images/logo.jpg" alt="شعار بكر"></div>
         <ul class="nav-links" id="navLinks">
             <li><a href="#store" class="active">الرئيسية</a></li>
             <li><a href="#banners">التشكيلات والفروع</a></li>
@@ -249,20 +247,19 @@
 
     <section class="banners-section" id="banners">
         <div class="main-banner">
-            <!-- اسم الصورة المستخدم هنا هو banner.jpg -->
-            <img src="banner.jpg" alt="البانر الرئيسي لعطور بكر">
+            <img src="images/banner.jpg" alt="البانر الرئيسي لعطور بكر">
         </div>
         <div class="banners-grid">
             <div class="banner-card" onclick="filterByCategory('men')">
-                <img src="mens-banner.jpg" alt="العطور الرجالية">
+                <img src="images/mens-banner.jpg" alt="العطور الرجالية">
                 <div class="banner-overlay">العطور الرجالية</div>
             </div>
             <div class="banner-card" onclick="filterByCategory('women')">
-                <img src="womens-banner.jpg" alt="العطور النسائية">
+                <img src="images/womens-banner.jpg" alt="العطور النسائية">
                 <div class="banner-overlay">العطور النسائية</div>
             </div>
             <div class="banner-card" onclick="filterByCategory('musk')">
-                <img src="musk-banner.jpg" alt="مجموعة المسك">
+                <img src="images/musk-banner.jpg" alt="مجموعة المسك">
                 <div class="banner-overlay">مجموعة المسك والفاخرة</div>
             </div>
         </div>
@@ -445,41 +442,41 @@
 
     <script>
         const products = [
-            { id: 1, name: "Abaq (عبق)", category: "musk", rating: 5, img: "Abaq.jpg" },
-            { id: 2, name: "Amiral (صندوق أميرال)", category: "men", rating: 5, img: "Amiral.jpg" },
-            { id: 3, name: "Essenc (إيسنس)", category: "women", rating: 5, img: "Essenc.jpg" },
-            { id: 4, name: "KM", category: "men", rating: 5, img: "KM.jpg" },
-            { id: 5, name: "1 Million", category: "men", rating: 5, img: "1 Million.jpg" },
-            { id: 6, name: "212 Black Red", category: "men", rating: 4, img: "212 Black Red.jpg" },
-            { id: 7, name: "Allure Chanel", category: "women", rating: 5, img: "Allure Chanel.jpg" },
-            { id: 8, name: "Angel's Share", category: "men", rating: 5, img: "Angel's Share.jpg" },
-            { id: 9, name: "Arabian Tonka", category: "men", rating: 4, img: "Arabian Tonka.jpg" },
-            { id: 10, name: "Babycat", category: "women", rating: 5, img: "Babycat.jpg" },
-            { id: 11, name: "Baccarat Rouge", category: "women", rating: 5, img: "Baccarat Rouge.jpg" },
-            { id: 12, name: "Barboss 50", category: "men", rating: 4, img: "Barboss 50.jpg" },
-            { id: 13, name: "Black Lacquer", category: "men", rating: 5, img: "Black Lacquer.jpg" },
-            { id: 14, name: "Black Opium", category: "women", rating: 5, img: "Black Opium.jpg" },
-            { id: 15, name: "Bleu de Chanel", category: "men", rating: 5, img: "Bleu de Chanel.jpg" },
-            { id: 16, name: "Blue Laverne", category: "men", rating: 4, img: "Blue Laverne.jpg" },
-            { id: 17, name: "Bois Imperial", category: "men", rating: 5, img: "Bois Imperial.jpg" },
-            { id: 18, name: "Bois Pacific", category: "men", rating: 4, img: "Bois Pacific.jpg" },
-            { id: 19, name: "Bois Talisman 111", category: "men", rating: 5, img: "Bois Talisman 111.jpg" },
-            { id: 20, name: "Boss Oud", category: "men", rating: 5, img: "Boss Oud.jpg" },
-            { id: 21, name: "Burberry Her Elixir", category: "women", rating: 5, img: "Burberry Her Elixir.jpg" },
-            { id: 22, name: "Burberry Her", category: "women", rating: 4, img: "Burberry Her.jpg" },
-            { id: 23, name: "Burberry Hero", category: "men", rating: 4, img: "Burberry Hero.jpg" },
-            { id: 24, name: "Bvlgari Tygar", category: "men", rating: 5, img: "Bvlgari Tygar.jpg" },
-            { id: 25, name: "Charnier Grès", category: "women", rating: 4, img: "Charnier Grès.jpg" },
-            { id: 26, name: "Coco Chanel", category: "women", rating: 5, img: "Coco Chanel.jpg" },
-            { id: 27, name: "Creed Aventus", category: "men", rating: 5, img: "Creed Aventus.jpg" },
-            { id: 28, name: "Creed Silver", category: "men", rating: 5, img: "Creed Silver.jpg" },
-            { id: 29, name: "Deer Laverne", category: "men", rating: 4, img: "Deer Laverne.jpg" },
-            { id: 30, name: "Dictator - Thunayan", category: "men", rating: 5, img: "Dictator - Thunayan.jpg" },
-            { id: 31, name: "Dior Homme", category: "men", rating: 5, img: "Dior Homme.jpg" },
-            { id: 32, name: "Escada Moon", category: "women", rating: 4, img: "Escada Moon.jpg" },
-            { id: 33, name: "God of Fire", category: "men", rating: 5, img: "God of Fire.jpg" },
-            { id: 34, name: "Guidance 46", category: "women", rating: 5, img: "Guidance 46.jpg" },
-            { id: 35, name: "Hypnotic Poison", category: "women", rating: 4, img: "Hypnotic Poison.jpg" }
+            { id: 1, name: "Abaq (عبق)", category: "musk", rating: 5, img: "images/Abaq.jpg" },
+            { id: 2, name: "Amiral (صندوق أميرال)", category: "men", rating: 5, img: "images/Amiral.jpg" },
+            { id: 3, name: "Essenc (إيسنس)", category: "women", rating: 5, img: "images/Essenc.jpg" },
+            { id: 4, name: "KM", category: "men", rating: 5, img: "images/KM.jpg" },
+            { id: 5, name: "1 Million", category: "men", rating: 5, img: "images/1 Million.jpg" },
+            { id: 6, name: "212 Black Red", category: "men", rating: 4, img: "images/212 Black Red.jpg" },
+            { id: 7, name: "Allure Chanel", category: "women", rating: 5, img: "images/Allure Chanel.jpg" },
+            { id: 8, name: "Angel's Share", category: "men", rating: 5, img: "images/Angel's Share.jpg" },
+            { id: 9, name: "Arabian Tonka", category: "men", rating: 4, img: "images/Arabian Tonka.jpg" },
+            { id: 10, name: "Babycat", category: "women", rating: 5, img: "images/Babycat.jpg" },
+            { id: 11, name: "Baccarat Rouge", category: "women", rating: 5, img: "images/Baccarat Rouge.jpg" },
+            { id: 12, name: "Barboss 50", category: "men", rating: 4, img: "images/Barboss 50.jpg" },
+            { id: 13, name: "Black Lacquer", category: "men", rating: 5, img: "images/Black Lacquer.jpg" },
+            { id: 14, name: "Black Opium", category: "women", rating: 5, img: "images/Black Opium.jpg" },
+            { id: 15, name: "Bleu de Chanel", category: "men", rating: 5, img: "images/Bleu de Chanel.jpg" },
+            { id: 16, name: "Blue Laverne", category: "men", rating: 4, img: "images/Blue Laverne.jpg" },
+            { id: 17, name: "Bois Imperial", category: "men", rating: 5, img: "images/Bois Imperial.jpg" },
+            { id: 18, name: "Bois Pacific", category: "men", rating: 4, img: "images/Bois Pacific.jpg" },
+            { id: 19, name: "Bois Talisman 111", category: "men", rating: 5, img: "images/Bois Talisman 111.jpg" },
+            { id: 20, name: "Boss Oud", category: "men", rating: 5, img: "images/Boss Oud.jpg" },
+            { id: 21, name: "Burberry Her Elixir", category: "women", rating: 5, img: "images/Burberry Her Elixir.jpg" },
+            { id: 22, name: "Burberry Her", category: "women", rating: 4, img: "images/Burberry Her.jpg" },
+            { id: 23, name: "Burberry Hero", category: "men", rating: 4, img: "images/Burberry Hero.jpg" },
+            { id: 24, name: "Bvlgari Tygar", category: "men", rating: 5, img: "images/Bvlgari Tygar.jpg" },
+            { id: 25, name: "Charnier Grès", category: "women", rating: 4, img: "images/Charnier Grès.jpg" },
+            { id: 26, name: "Coco Chanel", category: "women", rating: 5, img: "images/Coco Chanel.jpg" },
+            { id: 27, name: "Creed Aventus", category: "men", rating: 5, img: "images/Creed Aventus.jpg" },
+            { id: 28, name: "Creed Silver", category: "men", rating: 5, img: "images/Creed Silver.jpg" },
+            { id: 29, name: "Deer Laverne", category: "men", rating: 4, img: "images/Deer Laverne.jpg" },
+            { id: 30, name: "Dictator - Thunayan", category: "men", rating: 5, img: "images/Dictator - Thunayan.jpg" },
+            { id: 31, name: "Dior Homme", category: "men", rating: 5, img: "images/Dior Homme.jpg" },
+            { id: 32, name: "Escada Moon", category: "women", rating: 4, img: "images/Escada Moon.jpg" },
+            { id: 33, name: "God of Fire", category: "men", rating: 5, img: "images/God of Fire.jpg" },
+            { id: 34, name: "Guidance 46", category: "women", rating: 5, img: "images/Guidance 46.jpg" },
+            { id: 35, name: "Hypnotic Poison", category: "women", rating: 4, img: "images/Hypnotic Poison.jpg" }
         ];
 
         const pricesBySz = {
