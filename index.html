@@ -71,7 +71,7 @@
         .hamburger { display: none; font-size: 24px; cursor: pointer; }
 
         .hero {
-            height: 80vh; display: flex; align-items: center; justify-content: center;
+            height: 75vh; display: flex; align-items: center; justify-content: center;
             text-align: center; position: relative; overflow: hidden;
         }
         .back-video { position: absolute; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1; object-fit: cover; }
@@ -86,22 +86,28 @@
         }
         .btn:hover { background-color: var(--gold); color: #1a1a1a; box-shadow: 0 5px 20px rgba(223, 186, 115, 0.3); }
 
-        /* قسم البانرات الفرعية الاستعراضية */
+        /* قسم البانرات الدعائية الكبيرة والفرعية */
         .banners-section { padding: 40px 6% 0 6%; }
-        .banners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .main-banner {
+            width: 100%; height: 220px; border-radius: 12px; overflow: hidden;
+            border: 1px solid var(--border-color); margin-bottom: 25px; position: relative;
+        }
+        .main-banner img { width: 100%; height: 100%; object-fit: cover; }
+
+        .banners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .banner-card {
             border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);
-            height: 160px; position: relative; cursor: pointer; background-color: var(--card-bg);
+            height: 150px; position: relative; cursor: pointer; background-color: var(--card-bg);
         }
         .banner-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
         .banner-card:hover img { transform: scale(1.05); }
         .banner-overlay {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 15px;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: #fff; font-size: 16px; font-weight: 700;
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 12px 15px;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            color: #fff; font-size: 15px; font-weight: 700;
         }
 
-        .store-section { padding: 50px 6%; }
+        .store-section { padding: 40px 6%; }
         .controls-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
         
         .search-box { position: relative; flex: 1; max-width: 350px; }
@@ -230,8 +236,11 @@
         </div>
     </section>
 
-    <!-- قسم البانرات الفرعية الجديدة (Mens, Womens, Musk, banner) -->
+    <!-- قسم البانرات (البانر الرئيسي + البانرات الفرعية: mens, womens, musk) -->
     <section class="banners-section" id="banners">
+        <div class="main-banner">
+            <img src="images/banner.jpg" alt="البانر الرئيسي لعطور بكر">
+        </div>
         <div class="banners-grid">
             <div class="banner-card" onclick="filterByCategory('men')">
                 <img src="images/mens-banner.jpg" alt="العطور الرجالية">
@@ -428,7 +437,7 @@
     </script>
 
     <script>
-        // دمج المنتجات الحالية مع العطور الجديدة المضافة (Abaq, Amiral, Essenc, KM) بالأسعار الموحدة
+        // مصفوفة المنتجات والعطور متضمنة العطور الأربعة الجديدة بأسماؤها ومساراتها الدقيقة
         const products = [
             { id: 1, name: "Abaq (عبق)", category: "musk", rating: 5, img: "images/Abaq.jpg" },
             { id: 2, name: "Amiral (صندوق أميرال)", category: "men", rating: 5, img: "images/Amiral.jpg" },
@@ -620,7 +629,7 @@
         }
 
         function updateModalPrice() {
-            const size = document.getElementById('modalSizeSelect.value') || document.getElementById('modalSizeSelect').value;
+            const size = document.getElementById('modalSizeSelect').value;
             const price = pricesBySz[size];
             document.getElementById('modalPrice').innerText = price.toLocaleString() + ' ريال يمني';
         }
