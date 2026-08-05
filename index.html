@@ -51,7 +51,28 @@
             backdrop-filter: blur(10px); z-index: 1000;
         }
 
-        .logo-container img { height: 50px; object-fit: contain; }
+        /* تعديل شعار بكر في أعلى الصفحة مع إطار ذهبي ولمسة فنية */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(223, 186, 115, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .logo-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(223, 186, 115, 0.8);
+        }
+        .logo-container img {
+            height: 48px;
+            width: 48px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            border: 2px solid var(--bg-color);
+        }
 
         .nav-links { display: flex; gap: 25px; list-style: none; }
         .nav-links a { color: var(--text-main); text-decoration: none; font-size: 15px; font-weight: 600; }
@@ -223,7 +244,9 @@
     <div class="top-bar">✨ عطور بكر الفاخرة | الأسعار بالريال اليمني ✨</div>
 
     <header>
-        <div class="logo-container"><img src="images/logo.jpg" alt="شعار بكر"></div>
+        <div class="logo-container">
+            <img src="images/logo.jpg" alt="شعار بكر">
+        </div>
         <ul class="nav-links" id="navLinks">
             <li><a href="#store" class="active">الرئيسية</a></li>
             <li><a href="#banners">التشكيلات والفروع</a></li>
@@ -313,8 +336,8 @@
 
     <section class="info-section" id="about">
         <h2>من نحن</h2>
-        <p style="max-width: 700px; margin: 15px auto; color: var(--text-muted); line-height: 1.8;">
-            متجر **بكر (Bakr)** وجهتك الأولى لعالم العطور الفاخرة والفريدة. نسعى دائماً لتقديم أجود التركيبات العطرية المستوحاة من أرقى الماركات العالمية عبر فروعنا المتميزة.
+        <p style="max-width: 700px; margin: 15px auto; color: var(--text-muted); line-height: 1.8; font-size: 16px;">
+            نبتكر في عطور **بكر (Bakr)** تجارب حسية استثنائية تنبض بالفخامة الخالصة، حيث نمزج أرقى النفحات الشرقية والغربية بتركيزات عالية تضمن **ثباتاً طويلاً وفوحاناً ساحراً** يخلد حضورك في كل مكان. نؤمن بأن العطر هو البصمة الأعمق للشخصية، لذا نصنع كل قطرة بشغف لتلائم أصحاب الذوق الرفيع والبحث الدائم عن التميز المطلق.
         </p>
     </section>
 
