@@ -88,25 +88,22 @@
 
         .banners-section { padding: 40px 6% 0 6%; }
         
-        /* تعديل البانر الرئيسي ليظهر كاملاً دون قص */
+        /* -- التعديل الجديد الجذري لضمان عدم قص البانر أبداً -- */
         .main-banner {
-            width: 100%; 
-            height: auto; 
-            border-radius: 12px; 
+            width: 100%;
+            display: block; /* تغيير العرض ليكون بلوك عادي لمنع أي تأثيرات من الفليكس */
+            border-radius: 12px;
             overflow: hidden;
-            border: 1px solid var(--border-color); 
-            margin-bottom: 25px; 
-            background-color: var(--card-bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
+            line-height: 0; /* يمنع ظهور مسافة فارغة صغيرة أسفل الصورة */
         }
-        .main-banner img { 
-            width: 100%; 
-            height: auto; 
+        .main-banner img {
+            width: 100%;
+            height: auto; /* السماح للصورة بتحديد ارتفاعها تلقائياً بناءً على العرض */
             display: block;
-            object-fit: contain; 
         }
+        /* ---------------------------------------------------- */
 
         .banners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .banner-card {
@@ -252,6 +249,7 @@
 
     <section class="banners-section" id="banners">
         <div class="main-banner">
+            <!-- اسم الصورة المستخدم هنا هو banner.jpg -->
             <img src="banner.jpg" alt="البانر الرئيسي لعطور بكر">
         </div>
         <div class="banners-grid">
